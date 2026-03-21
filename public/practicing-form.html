@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../build/input.css">
+    <title>validation of the form</title>
+</head>
+<body class="content-center min-h-dvh">
+    <form id="registerForm" action="">
+            <div class="space-y-4 w-fit p-4 mx-auto box-shadow">
+                <p class="text-yellow-600 uppercase text-center text-2xl">registred form</p>
+                <div class="grid grid-cols-[200px_200px]">
+                    <!-- lable -->
+                    <label class="labelStyle" for="name">first name</label>
+                    <!-- linput -->
+                    <input class="border" type="text" required name="" id="name">
+                </div>
+                <div class="gridSplit" >
+                    <!-- label -->
+                    <label class ="labelStyle" for="last-name">last name</label>
+                    <!-- linput -->
+                    <input class="border" type="text" name="" id="last-name">
+                </div>
+
+                <div class="gridSplit" >
+                    <!-- lable -->
+                    <label class ="labelStyle" for="password">password</label>
+                    <!-- input -->
+                    <input class="border" type="text" name="" id="password">
+                </div>
+
+                <div class="gridSplit">
+                    <!-- label -->
+                    <label class ="labelStyle" for="confirm-pass">confirm password</label>
+                    <!-- input -->
+                    <input class="border" type="text" name="" id="confirm-pass">
+                </div>
+
+                <div class="gridSplit">
+                    <label class ="labelStyle" for="select">gender</label>
+                    <select class="border" name="" id="select">
+                        <option class ="labelStyle" value="">male</option>
+                        <option class ="labelStyle" value="">female</option>
+                    </select>
+                </div>
+
+                <div class="gridSplit" >
+                    <label class = "labelStyle" for="" >choose a language</label>
+                        <div class="flex justify-between" >
+                            <div>
+                                <!-- input -->
+                                <input class="mr-1"   type="radio" value="css" name="skill" id="radio1">
+                                <!-- label -->
+                                <label class = "labelStyle" for="radio1" >css</label>
+                            </div>
+                            <div>
+                                <!-- input -->
+                                <input class="mr-1" value="HTML" type="radio" name="skill" id="radio2">
+                                <!-- label -->
+                                <label class = "labelStyle" for="radio2" >html</label>
+                            </div>
+                        </div>  
+                </div>
+                <div class="gridSplit">
+                    <!-- label -->
+                    <label class ="labelStyle" for="email">email</label>
+                    <!-- input -->
+                    <input class="border" type="text" name="" id="email">
+                </div>
+
+                <div class="gridSplit">
+                    <!-- label -->
+                    <label class ="labelStyle" for="phone">phone number</label>
+                    <!-- input -->
+                    <input class="border" type="text" name="" id="phone">
+                </div>
+
+                <div class="gridSplit">
+                    <!-- label -->
+                    <label class ="labelStyle"  for="address">address</label>
+                    <!-- textarea -->
+                    <textarea class="border" rows="4" style="resize: none;" name="" id="address"  rows="12"></textarea>
+                </div>
+                <div  class="gridSplit">
+                    <!-- label -->
+                    <label class="labelStyle" for="postal-code">postal-code</label>
+                    <!-- input -->
+                    <input class="border" type="text" name="" id="postal-code">
+                </div>
+                <div >
+                    <!-- checkbox -->
+                    <input class="border" class="labelStyle" type="checkbox" name="" id="agreedCheckBox">
+                    <!-- label -->
+                    <label class="labelStyle" for="">agreed to terms and conditions</label>
+                </div>
+
+                <div>
+                    <button class="w-full text-yellow-900 bg-gray-200 text-lg font-bold capitalize py-1 opacity-40" type="submit" id="registerBtn"  disabled>sign up</button>
+                </div>
+            </div>
+    </form>
+    <script type="module" src="forms.js"></script>
+</body>
+</html>

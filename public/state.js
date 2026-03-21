@@ -1,0 +1,1 @@
+export const signUpBtn = document.querySelector("#registerBtn")
