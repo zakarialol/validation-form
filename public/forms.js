@@ -16,6 +16,10 @@ agreedCheckB.addEventListener("change",(e)=>{
 //adding event sign up button 
 
 signUpBtn.addEventListener('click',(e)=>{
-    // e.preventDefault()
+    e.preventDefault()
     console.log('hello world ')
 })
+// let sting = "D"
+// let regex = /\bd\b/i
+// console.log(regex.test(sting))
+                                                                                                                                                                                                                                                                                                                                                                                                      
