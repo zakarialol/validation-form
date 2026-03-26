@@ -25,9 +25,13 @@ const confirmPssError = document.querySelector('[data-valid="confirmPssError"]')
 //view button 
 const viewPasswordBtn = document.querySelector("[data-btn='viewPassword']")
 const viewConfirmPasswordBtn = document.querySelector("[data-btn='viewConfirmPassword']")
+const PasswordInputDiv = document.querySelector("[data-input='PasswordInputDiv']")
 // const viewPassSvg = document.getElementById("viewPasswordSvg")
 // const HidePassSvg = document.getElementById("inviewPasswordSvg")
 const viewPasswordbtnSvgs = document.querySelectorAll("[data-btn='viewPassword'] svg")
+const viewConfirmPasswordbtnSvgs = document.querySelectorAll("[data-btn='viewConfirmPassword'] svg")
+const confirmPasswordInputDiv = document.querySelector('[data-input="ConfirmPasswordInputDiv"]')
+console.log(viewPasswordBtn)
 // import elements
 import { signUpBtn } from "./state.js";
 export {agreedFalseFunc,agreedTrueFunc,}
@@ -75,9 +79,16 @@ passwordInput.addEventListener('input',()=>{
     let passwordValue = passwordInput.value.trim()
     verfyPassword(passwordValue)
 })
+PasswordInputDiv.addEventListener('mouseenter',()=>{
+    console.log('hello world moues enter')
+    viewPasswordBtn.classList.remove('hidden')
+})
+PasswordInputDiv.addEventListener('mouseleave',()=>{
+    console.log('hello world mouse leave')
+    viewPasswordBtn.classList.add('hidden')
+})
 passwordInput.addEventListener('focus',()=>{
     PasswordConditionUL.classList.remove('hidden')
-    viewPasswordBtn.classList.remove('hidden')
 })
 // function to verfy password input 
 let passwordValidationObj = {}
@@ -108,6 +119,7 @@ function verfyPassword(passwordInputValue){
 }
 //
 passwordInput.addEventListener('blur',()=>{
+    // viewPasswordBtn.classList.add("hidden")
     if(passwordValidationObj.Passowrd1condition  &&
         passwordValidationObj.Passowrd2condition &&
         passwordValidationObj.Passowrd3condition 
@@ -123,7 +135,6 @@ function toggleErrorPasswordParagraphsFunc(el,condition){
         el.classList.toggle("text-red-500",!condition)
         el.classList.toggle("text-green-500",condition)
 }
-// validation of confirm passowrd
 confirmPass.addEventListener('blur',()=>{
         if(confirmPass.value.trim() === passwordValidationObj.passwordValid){
             ToggleSvgsFunc(confirmPssFalseSvg,confirmPssTrueSvg,confirmPssSvgsHolder,false)
@@ -135,15 +146,30 @@ confirmPass.addEventListener('blur',()=>{
 })
 //view button 
 viewPasswordBtn.addEventListener('click',(e)=>{
-    e.preventDefault()
     passwordInput.type =  passwordInput.type === "password"? "text" : "password";
-        viewPasswordbtnSvgs.forEach(item =>{
+    svgPassowrdEye(viewPasswordbtnSvgs)
+    //     viewPasswordbtnSvgs.forEach(item =>{
+    //     console.log(item)
+    //     item.classList.toggle('hidden')
+    // })
+})
+// hide eye or view 
+function svgPassowrdEye(els){
+    els.forEach(item =>{
         console.log(item)
         item.classList.toggle('hidden')
     })
-})
+}
 // confirm password view button
 viewConfirmPasswordBtn.addEventListener('click',(e)=>{
-    e.preventDefault()
     confirmPass.type = confirmPass.type === "password"? "text" : "password"
+    // viewConfirmPasswordbtnSvgs 
+    svgPassowrdEye(viewConfirmPasswordbtnSvgs)
+})
+//
+confirmPasswordInputDiv.addEventListener("mouseenter",()=>{
+    viewConfirmPasswordBtn.classList.remove('hidden')
+})
+confirmPasswordInputDiv.addEventListener("mouseleave",()=>{
+    viewConfirmPasswordBtn.classList.add('hidden')
 })
