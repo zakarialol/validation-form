@@ -3,6 +3,9 @@ module.exports = {
   content: ["./public/*.{html,js}"],
   theme: {
     extend: {},
+    listStyleType:{
+      disclosureclosed:"disclosure-closed"
+    }
   },
   plugins: [],
 }
