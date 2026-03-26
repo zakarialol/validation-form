@@ -22,6 +22,14 @@ const confirmPssTrueSvg = document.getElementById('confirmPasswordTruesvg')
 const confirmPssFalseSvg = document.getElementById('confirmPasswordFalsesvg')
 const confirmPssSvgsHolder = document.querySelector('[data-valid="confirmPassword"]')
 const confirmPssError = document.querySelector('[data-valid="confirmPssError"]')
+//view button 
+const viewPasswordBtn = document.querySelector("[data-btn='viewPassword']")
+const viewConfirmPasswordBtn = document.querySelector("[data-btn='viewConfirmPassword']")
+console.log(viewConfirmPasswordBtn)
+// const viewPassSvg = document.getElementById("viewPasswordSvg")
+// const HidePassSvg = document.getElementById("inviewPasswordSvg")
+const viewPasswordbtnSvgs = document.querySelectorAll("[data-btn='viewPassword'] svg")
+console.log(viewPasswordbtnSvgs)
 // import elements
 import { signUpBtn } from "./state.js";
 export {agreedFalseFunc,agreedTrueFunc,}
@@ -52,7 +60,7 @@ function NameValidationFunc(El,regex,mainHolder,svgFalse,svgTrue){
     // })
 }
 firstNameInput.addEventListener("blur",()=>{
-    NameValidationFunc(firstNameInput,/^[a-zA-Z]{2,}$/,firstNameSvgsHolder,fFalseSvg,fTrueSvg)
+    NameValidationFunc(firstNameInput,/^[a-zA-Z\s]{2,}$/,firstNameSvgsHolder,fFalseSvg,fTrueSvg)
 })
 // validation of the svgs 
 function ToggleSvgsFunc(svgFalseEl,svgTrueEl,mainHolder,condition){
@@ -62,7 +70,7 @@ function ToggleSvgsFunc(svgFalseEl,svgTrueEl,mainHolder,condition){
 }
 // validtion of last name 
 lastNameInput.addEventListener("blur",()=>{
-    NameValidationFunc(lastNameInput,/^[a-zA-Z]{2,}$/,lastNameSvgsHolder,lFalseSvg,lTrueSvg)
+    NameValidationFunc(lastNameInput,/^[a-zA-Z\s]{2,}$/,lastNameSvgsHolder,lFalseSvg,lTrueSvg)
 })
 // about passord
 passwordInput.addEventListener('input',()=>{
@@ -71,6 +79,7 @@ passwordInput.addEventListener('input',()=>{
 })
 passwordInput.addEventListener('focus',()=>{
     PasswordConditionUL.classList.remove('hidden')
+    viewPasswordBtn.classList.remove('hidden')
 })
 // function to verfy password input 
 let passwordValidationObj = {}
@@ -98,13 +107,12 @@ function verfyPassword(passwordInputValue){
         toggleErrorPasswordParagraphsFunc(scpecialCaraterForPassword,false)
         passwordValidationObj.Passowrd3condition = ""
     }
-    console.log(passwordValidationObj, "password validation object")
 }
 //
 passwordInput.addEventListener('blur',()=>{
-    if(passwordValidationObj.Passowrd1condition === true &&
-        passwordValidationObj.Passowrd2condition === true &&
-        passwordValidationObj.Passowrd3condition === true
+    if(passwordValidationObj.Passowrd1condition  &&
+        passwordValidationObj.Passowrd2condition &&
+        passwordValidationObj.Passowrd3condition 
      ){
         // hide the condition div
         PasswordConditionUL.classList.add('hidden')
@@ -117,15 +125,27 @@ function toggleErrorPasswordParagraphsFunc(el,condition){
         el.classList.toggle("text-red-500",!condition)
         el.classList.toggle("text-green-500",condition)
 }
-// validation of new password
+// validation of confirm passowrd
 confirmPass.addEventListener('blur',()=>{
         if(confirmPass.value.trim() === passwordValidationObj.passwordValid){
-            console.log('passwrod match')
             ToggleSvgsFunc(confirmPssFalseSvg,confirmPssTrueSvg,confirmPssSvgsHolder,false)
             confirmPssError.classList.add('hidden')
         }else if(passwordInput.value.trim() !== "" && confirmPass.value.trim() !== passwordValidationObj.passwordValid){
             ToggleSvgsFunc(confirmPssFalseSvg,confirmPssTrueSvg,confirmPssSvgsHolder,true)
-            console.log('we are inside else')
             confirmPssError.classList.remove('hidden')
         }
+})
+//view button 
+viewPasswordBtn.addEventListener('click',(e)=>{
+    e.preventDefault()
+    passwordInput.type =  passwordInput.type === "password"? "text" : "password";
+        viewPasswordbtnSvgs.forEach(item =>{
+        console.log(item)
+        item.classList.toggle('hidden')
+    })
+})
+// confirm password view button
+viewConfirmPasswordBtn.addEventListener('click',(e)=>{
+    e.preventDefault()
+    confirmPass.type = confirmPass.type === "password"? "text" : "password"
 })
