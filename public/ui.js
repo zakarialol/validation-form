@@ -25,11 +25,9 @@ const confirmPssError = document.querySelector('[data-valid="confirmPssError"]')
 //view button 
 const viewPasswordBtn = document.querySelector("[data-btn='viewPassword']")
 const viewConfirmPasswordBtn = document.querySelector("[data-btn='viewConfirmPassword']")
-console.log(viewConfirmPasswordBtn)
 // const viewPassSvg = document.getElementById("viewPasswordSvg")
 // const HidePassSvg = document.getElementById("inviewPasswordSvg")
 const viewPasswordbtnSvgs = document.querySelectorAll("[data-btn='viewPassword'] svg")
-console.log(viewPasswordbtnSvgs)
 // import elements
 import { signUpBtn } from "./state.js";
 export {agreedFalseFunc,agreedTrueFunc,}
