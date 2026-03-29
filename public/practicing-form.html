@@ -97,18 +97,20 @@
                     <!-- label -->
                     <label class ="labelStyle" for="confirm-pass">confirm password</label>
                     <!-- input -->
-                     <div  class="relative">
+                     <div >
                         <div data-input="ConfirmPasswordInputDiv" class="relative">
-                            <input class="w-full border" type="password" name="confirmPassowrd" id="confirm-pass">
-                            <p data-valid="confirmPssError" class="hidden text-xs text-red-500 capitalize">password don't much</p>
-                            <button type="button" data-btn="viewConfirmPassword" class="hidden absolute w-4 h-4 -translate-y-1/2 bg-transparent outline-none right-[2px] realtive top-1/2 cursor-pointer">
-                                <svg class="hidden" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <circle cx="12" cy="12" r="3.5" stroke="#222222"/>
-                                    <path d="M21 12C21 12 20 4 12 4C4 4 3 12 3 12" stroke="#222222"/>
-                                </svg>
-                                <svg class="w-4 h-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter"><path d="M9.14,9a4,4,0,0,0,5.65,5.65Z" fill="#059cf7" opacity="0.1" stroke-width="0"></path><path d="M17.86,18.14l-.44.32-.48.29-.51.27c-.17.08-.35.17-.54.24l-.56.22-.6.18-.63.14-.67.11-.7.07L12,20l-.73,0-.7-.07L9.9,19.8l-.63-.14-.6-.18-.56-.22c-.19-.07-.37-.16-.54-.24l-.51-.27-.48-.29-.44-.32a4.46,4.46,0,0,1-.43-.33l-.39-.34L5,17.11l-.34-.36c-.11-.13-.22-.25-.32-.38L4,16l-.27-.37-.25-.38c-.08-.12-.15-.24-.22-.36l-.21-.36-.18-.34-.16-.33-.15-.32-.12-.29c0-.09-.08-.18-.11-.27l-.09-.24c0-.08-.06-.15-.08-.22l-.06-.18a1,1,0,0,1,0-.14.76.76,0,0,1,0-.11V12l0-.07a.76.76,0,0,1,0-.11l.06-.14.08-.18c0-.07.07-.14.1-.22L2.44,11c0-.09.09-.18.14-.27l.15-.29.18-.32C3,10,3,9.93,3.1,9.81l.22-.34c.07-.12.15-.24.23-.36l.26-.36c.08-.13.18-.25.27-.38L4.37,8l.32-.37L5,7.25l.35-.36.38-.36.4-.34"></path><path d="M10.14,4.2l.59-.11L11.36,4,12,4l.64,0,.63.07.59.11.58.14.55.18.53.22c.17.07.34.16.51.24l.49.27.46.29.44.32.42.33.4.34.38.36.35.36.34.38c.11.12.21.24.31.37s.2.25.3.37.19.25.27.38l.26.36c.08.12.16.24.23.36l.22.34c.06.12.13.23.19.33l.18.32.15.29c0,.09.1.18.14.27l.12.24c0,.08.07.15.1.22l.08.18.06.14a.76.76,0,0,1,0,.11L22,12v.11a.76.76,0,0,1,0,.11,1,1,0,0,1,0,.14l-.06.18c0,.07-.05.14-.08.22s-.06.16-.09.24-.07.18-.11.27l-.12.29-.15.32-.16.33-.18.34-.21.36"></path><path d="M14.83,14.83A4,4,0,0,1,9.17,9.17"></path><line x1="2" y1="2" x2="22" y2="22"></line></svg>
-                            </button>
+                            <div class="relative">
+                                <input class="w-full border" type="password" name="confirmPassowrd" id="confirm-pass">
 
+                                <button type="button" data-btn="viewConfirmPassword" class=" hidden absolute w-4 h-4 -translate-y-1/2 bg-transparent outline-none right-[2px] realtive top-1/2 cursor-pointer">
+                                    <svg class="hidden" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <circle cx="12" cy="12" r="3.5" stroke="#222222"/>
+                                        <path d="M21 12C21 12 20 4 12 4C4 4 3 12 3 12" stroke="#222222"/>
+                                    </svg>
+                                    <svg class="w-4 h-4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#000000" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter"><path d="M9.14,9a4,4,0,0,0,5.65,5.65Z" fill="#059cf7" opacity="0.1" stroke-width="0"></path><path d="M17.86,18.14l-.44.32-.48.29-.51.27c-.17.08-.35.17-.54.24l-.56.22-.6.18-.63.14-.67.11-.7.07L12,20l-.73,0-.7-.07L9.9,19.8l-.63-.14-.6-.18-.56-.22c-.19-.07-.37-.16-.54-.24l-.51-.27-.48-.29-.44-.32a4.46,4.46,0,0,1-.43-.33l-.39-.34L5,17.11l-.34-.36c-.11-.13-.22-.25-.32-.38L4,16l-.27-.37-.25-.38c-.08-.12-.15-.24-.22-.36l-.21-.36-.18-.34-.16-.33-.15-.32-.12-.29c0-.09-.08-.18-.11-.27l-.09-.24c0-.08-.06-.15-.08-.22l-.06-.18a1,1,0,0,1,0-.14.76.76,0,0,1,0-.11V12l0-.07a.76.76,0,0,1,0-.11l.06-.14.08-.18c0-.07.07-.14.1-.22L2.44,11c0-.09.09-.18.14-.27l.15-.29.18-.32C3,10,3,9.93,3.1,9.81l.22-.34c.07-.12.15-.24.23-.36l.26-.36c.08-.13.18-.25.27-.38L4.37,8l.32-.37L5,7.25l.35-.36.38-.36.4-.34"></path><path d="M10.14,4.2l.59-.11L11.36,4,12,4l.64,0,.63.07.59.11.58.14.55.18.53.22c.17.07.34.16.51.24l.49.27.46.29.44.32.42.33.4.34.38.36.35.36.34.38c.11.12.21.24.31.37s.2.25.3.37.19.25.27.38l.26.36c.08.12.16.24.23.36l.22.34c.06.12.13.23.19.33l.18.32.15.29c0,.09.1.18.14.27l.12.24c0,.08.07.15.1.22l.08.18.06.14a.76.76,0,0,1,0,.11L22,12v.11a.76.76,0,0,1,0,.11,1,1,0,0,1,0,.14l-.06.18c0,.07-.05.14-.08.22s-.06.16-.09.24-.07.18-.11.27l-.12.29-.15.32-.16.33-.18.34-.21.36"></path><path d="M14.83,14.83A4,4,0,0,1,9.17,9.17"></path><line x1="2" y1="2" x2="22" y2="22"></line></svg>
+                                </button>
+                            </div>
+                            <p data-valid="confirmPssError" class="hidden text-xs text-red-500 capitalize">password don't much</p>
                         </div>
                                                   <!-- password svgs  -->
                         <div data-valid="confirmPassword" class="absolute hidden w-4 h-4 bg-white -top-2 -right-1">
@@ -129,18 +131,19 @@
 
                 <div class="gridSplit">
                     <label class ="labelStyle" for="select">gender</label>
-                    <select class="border" name="" id="select">
-                        <option class ="labelStyle" value="">male</option>
-                        <option class ="labelStyle" value="">female</option>
+                    <select class="capitalize border outline-none opacity-50" name="gender" id="selectGender">
+                        <option class="labelStyle"  hidden selected disabled value="">select gender</option>
+                        <option class ="labelStyle" value="male">male</option>
+                        <option class ="labelStyle" value="famale">female</option>
                     </select>
                 </div>
-
+                <!-- radio button  -->
                 <div class="gridSplit" >
                     <label class = "labelStyle" for="" >choose a language</label>
                         <div class="flex justify-between" >
                             <div>
                                 <!-- input -->
-                                <input class="mr-1"   type="radio" value="css" name="skill" id="radio1">
+                                <input class="mr-1"   type="radio" value="css" name="skill" id="radio1" required>
                                 <!-- label -->
                                 <label class = "labelStyle" for="radio1" >css</label>
                             </div>
@@ -152,18 +155,54 @@
                             </div>
                         </div>  
                 </div>
+                <!-- todo: email****##**** -->
                 <div class="gridSplit">
                     <!-- label -->
                     <label class ="labelStyle" for="email">email</label>
                     <!-- input -->
-                    <input class="border" type="text" name="" id="email">
+                    <div>
+                        <div class="relative">
+                            <input class="w-full border" type="email" required name="" id="email">
+                            <div data-valid="eamilSvgsDiv" class="absolute hidden w-4 h-4 bg-white -top-2 -right-1">
+                                <svg class="hidden" id="emailFalsesvg" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <title>error-filled</title>
+                                    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <g id="add" fill="red" transform="translate(42.666667, 42.666667)">
+                                            <path d="M213.333333,3.55271368e-14 C331.136,3.55271368e-14 426.666667,95.5306667 426.666667,213.333333 C426.666667,331.136 331.136,426.666667 213.333333,426.666667 C95.5306667,426.666667 3.55271368e-14,331.136 3.55271368e-14,213.333333 C3.55271368e-14,95.5306667 95.5306667,3.55271368e-14 213.333333,3.55271368e-14 Z M262.250667,134.250667 L213.333333,183.168 L164.416,134.250667 L134.250667,164.416 L183.168,213.333333 L134.250667,262.250667 L164.416,292.416 L213.333333,243.498667 L262.250667,292.416 L292.416,262.250667 L243.498667,213.333333 L292.416,164.416 L262.250667,134.250667 Z" id="Combined-Shape">
+                                            </path>
+                                        </g>
+                                    </g>
+                                </svg>
+                                <svg class="hidden" id="emailTruesvg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M21.007 8.27C22.194 9.125 23 10.45 23 12c0 1.55-.806 2.876-1.993 3.73.24 1.442-.134 2.958-1.227 4.05-1.095 1.095-2.61 1.459-4.046 1.225C14.883 22.196 13.546 23 12 23c-1.55 0-2.878-.807-3.731-1.996-1.438.235-2.954-.128-4.05-1.224-1.095-1.095-1.459-2.611-1.217-4.05C1.816 14.877 1 13.551 1 12s.816-2.878 2.002-3.73c-.242-1.439.122-2.955 1.218-4.05 1.093-1.094 2.61-1.467 4.057-1.227C9.125 1.804 10.453 1 12 1c1.545 0 2.88.803 3.732 1.993 1.442-.24 2.956.135 4.048 1.227 1.093 1.092 1.468 2.608 1.227 4.05Zm-4.426-.084a1 1 0 0 1 .233 1.395l-5 7a1 1 0 0 1-1.521.126l-3-3a1 1 0 0 1 1.414-1.414l2.165 2.165 4.314-6.04a1 1 0 0 1 1.395-.232Z" fill="green"/>
+                                </svg>
+                            </div>
+                        </div>
+                        <!-- error paragraph for email -->
+                         <p class="hidden text-xs text-red-500" id="emailErrorParagraph">email is not valid</p>
+                    </div>
                 </div>
-
+                <!-- todo: phone number -->
                 <div class="gridSplit">
                     <!-- label -->
-                    <label class ="labelStyle" for="phone">phone number</label>
+                    <label class="labelStyle" for="phone">phone number</label>
                     <!-- input -->
-                    <input class="border" type="text" name="" id="phone">
+                     <div class="relative">
+                         <input class="w-full border" type="text" name="" id="phone">
+                         <div data-valid="phoneSvgsDiv"  class="absolute hidden w-4 h-4 bg-white -top-2 -right-1">
+                            <svg class="hidden" id="phoneFalsesvg" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                    <title>error-filled</title>
+                                    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <g id="add" fill="red" transform="translate(42.666667, 42.666667)">
+                                            <path d="M213.333333,3.55271368e-14 C331.136,3.55271368e-14 426.666667,95.5306667 426.666667,213.333333 C426.666667,331.136 331.136,426.666667 213.333333,426.666667 C95.5306667,426.666667 3.55271368e-14,331.136 3.55271368e-14,213.333333 C3.55271368e-14,95.5306667 95.5306667,3.55271368e-14 213.333333,3.55271368e-14 Z M262.250667,134.250667 L213.333333,183.168 L164.416,134.250667 L134.250667,164.416 L183.168,213.333333 L134.250667,262.250667 L164.416,292.416 L213.333333,243.498667 L262.250667,292.416 L292.416,262.250667 L243.498667,213.333333 L292.416,164.416 L262.250667,134.250667 Z" id="Combined-Shape">
+                                            </path>
+                                        </g>
+                                    </g>
+                                </svg>
+                                <svg class="hidden" id="phoneTruesvg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M21.007 8.27C22.194 9.125 23 10.45 23 12c0 1.55-.806 2.876-1.993 3.73.24 1.442-.134 2.958-1.227 4.05-1.095 1.095-2.61 1.459-4.046 1.225C14.883 22.196 13.546 23 12 23c-1.55 0-2.878-.807-3.731-1.996-1.438.235-2.954-.128-4.05-1.224-1.095-1.095-1.459-2.611-1.217-4.05C1.816 14.877 1 13.551 1 12s.816-2.878 2.002-3.73c-.242-1.439.122-2.955 1.218-4.05 1.093-1.094 2.61-1.467 4.057-1.227C9.125 1.804 10.453 1 12 1c1.545 0 2.88.803 3.732 1.993 1.442-.24 2.956.135 4.048 1.227 1.093 1.092 1.468 2.608 1.227 4.05Zm-4.426-.084a1 1 0 0 1 .233 1.395l-5 7a1 1 0 0 1-1.521.126l-3-3a1 1 0 0 1 1.414-1.414l2.165 2.165 4.314-6.04a1 1 0 0 1 1.395-.232Z" fill="green"/>
+                                </svg>
+                         </div>
+                         <p id="phoneErrorParagraph" class="hidden text-xs text-red-500">please right valid phone number</p>
+                     </div>
                 </div>
 
                 <div class="gridSplit">

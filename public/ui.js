@@ -1,4 +1,4 @@
-//select elements 
+//todo select elements 
 const firstNameInput = document.getElementById("firstName")
 const lastNameInput = document.getElementById("last-name")
 const fTrueSvg = document.querySelector('[data-valid="firstName"] #fNameTruesvg')
@@ -7,7 +7,7 @@ const firstNameSvgsHolder = document.querySelector('[data-valid="firstName"]')
 const lTrueSvg = document.querySelector('[data-valid="lastName"] #LNameTruesvg')
 const lFalseSvg = document.querySelector('[data-valid="lastName"] #LNameFalsesvg')
 const lastNameSvgsHolder = document.querySelector('[data-valid="lastName"]')
-// passord selectors 
+//todo passord selectors 
 const passwordInput =  document.getElementById("passwordInput")
 const PasswordConditionUL = document.getElementById("PasswordConditionUL")
 const passwordSvgsHolder = document.querySelector("[data-valid='password']")
@@ -16,22 +16,33 @@ const numberPasswordForPassword = document.getElementById("psswordContNbrL")
 const scpecialCaraterForPassword = document.getElementById("passwordContSpclCaratrL")
 const pssFalseSvg = document.getElementById('passwordFalsesvg')
 const pssTrueeSvg = document.getElementById('passwordTruesvg')
-//confirm Password 
+//todo confirm Password 
 const confirmPass = document.getElementById('confirm-pass')
 const confirmPssTrueSvg = document.getElementById('confirmPasswordTruesvg')
 const confirmPssFalseSvg = document.getElementById('confirmPasswordFalsesvg')
 const confirmPssSvgsHolder = document.querySelector('[data-valid="confirmPassword"]')
 const confirmPssError = document.querySelector('[data-valid="confirmPssError"]')
-//view button 
+//todo view button 
 const viewPasswordBtn = document.querySelector("[data-btn='viewPassword']")
 const viewConfirmPasswordBtn = document.querySelector("[data-btn='viewConfirmPassword']")
 const PasswordInputDiv = document.querySelector("[data-input='PasswordInputDiv']")
-// const viewPassSvg = document.getElementById("viewPasswordSvg")
-// const HidePassSvg = document.getElementById("inviewPasswordSvg")
 const viewPasswordbtnSvgs = document.querySelectorAll("[data-btn='viewPassword'] svg")
 const viewConfirmPasswordbtnSvgs = document.querySelectorAll("[data-btn='viewConfirmPassword'] svg")
 const confirmPasswordInputDiv = document.querySelector('[data-input="ConfirmPasswordInputDiv"]')
-console.log(viewPasswordBtn)
+//select gender
+const genderSelect = document.getElementById('selectGender')
+//todo email validation
+const emailInput = document.getElementById('email')
+const emailSvgsDiv = document.querySelector('[data-valid="eamilSvgsDiv"]')
+const emailFalseSvg = document.getElementById('emailFalsesvg')
+const emailTrueSvg = document.getElementById('emailTruesvg')
+const emailErrorParagraph = document.getElementById('emailErrorParagraph')
+//todo phone validation
+const phoneInput = document.getElementById('phone')
+const phoneSvgHolder = document.querySelector('[data-valid="phoneSvgsDiv"]')
+const phoneFalseSvg = document.getElementById('phoneFalsesvg')
+const phoneTrueSvg = document.getElementById('phoneTruesvg')
+const phoneErrParagraph = document.getElementById('phoneErrorParagraph')
 // import elements
 import { signUpBtn } from "./state.js";
 export {agreedFalseFunc,agreedTrueFunc,}
@@ -51,19 +62,29 @@ function toggleFunc(isvisible){
     signUpBtn.classList.toggle("opacity-100",isvisible)
 }
 // validtion of the first name 
-function NameValidationFunc(El,regex,mainHolder,svgFalse,svgTrue){
+function ValidationFunc({El,regex,mainHolder,svgFalse,svgTrue,erroEl}){
+    console.log(mainHolder)
+        console.log('entred')
         let NameV = El.value.trim()
         let regexTest = regex
         if(regexTest.test(NameV)){
+            console.log('we entred the true stuation')
             ToggleSvgsFunc(svgTrue,svgFalse,mainHolder,true)
+            if(erroEl) erroEl.classList.add('hidden')   
         }else if(NameV.trim()==="" || !regexTest.test(NameV)){
             ToggleSvgsFunc(svgTrue,svgFalse,mainHolder,false)
+            console.log('we entring the false setuation')
+            if(erroEl) erroEl.classList.remove('hidden')   
         }
     // })
 }
 firstNameInput.addEventListener("blur",()=>{
-    NameValidationFunc(firstNameInput,/^[a-zA-Z\s]{2,}$/,firstNameSvgsHolder,fFalseSvg,fTrueSvg)
+    // ValidationFunc(firstNameInput,/^[a-zA-Z\s]{2,}$/,firstNameSvgsHolder,fFalseSvg,fTrueSvg)
+    ValidationFunc({
+        El:firstNameInput,regex:/^[a-zA-Z\s]{2,}$/,mainHolder:firstNameSvgsHolder,svgFalse:fFalseSvg,svgTrue:fTrueSvg,
+    })
 })
+
 // validation of the svgs 
 function ToggleSvgsFunc(svgFalseEl,svgTrueEl,mainHolder,condition){
             mainHolder.classList.remove('hidden')
@@ -72,7 +93,9 @@ function ToggleSvgsFunc(svgFalseEl,svgTrueEl,mainHolder,condition){
 }
 // validtion of last name 
 lastNameInput.addEventListener("blur",()=>{
-    NameValidationFunc(lastNameInput,/^[a-zA-Z\s]{2,}$/,lastNameSvgsHolder,lFalseSvg,lTrueSvg)
+    ValidationFunc({
+        El:lastNameInput,regex:/^[a-zA-Z\s]{2,}$/,mainHolder:lastNameSvgsHolder,svgFalse:lFalseSvg,svgTrue:lTrueSvg,
+    })
 })
 // about passord
 passwordInput.addEventListener('input',()=>{
@@ -172,4 +195,25 @@ confirmPasswordInputDiv.addEventListener("mouseenter",()=>{
 })
 confirmPasswordInputDiv.addEventListener("mouseleave",()=>{
     viewConfirmPasswordBtn.classList.add('hidden')
+})
+// working on select genger
+genderSelect.addEventListener('change',()=>{
+    if(genderSelect.value){
+        genderSelect.classList.remove('opacity-50')
+    }
+})
+//todo validation of email
+emailInput.addEventListener('blur',()=>{
+    console.log('validation of email')
+    ValidationFunc({El:emailInput,regex:/^[^\s@]+@[^\s@]+\.[^\s@]+$/,mainHolder:emailSvgsDiv,svgFalse:emailFalseSvg,svgTrue:emailTrueSvg,erroEl:emailErrorParagraph})
+    console.log('you just left email input')
+})
+//todo phone validation 
+
+phoneInput.addEventListener('blur',()=>{
+    console.log('we just entered the phone number')
+    ValidationFunc({
+        El:phoneInput,regex:/^0\d{9}$/,mainHolder:phoneSvgHolder,svgFalse:phoneFalseSvg,svgTrue:phoneTrueSvg,erroEl:phoneErrParagraph,
+    })
+    
 })
