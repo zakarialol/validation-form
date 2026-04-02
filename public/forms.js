@@ -2,7 +2,8 @@
 const agreedCheckB = document.querySelector('#agreedCheckBox')
 //raio button 
 const skill = document.querySelectorAll('input[name="skill"]')
-console.log(skill)
+const form = document.getElementById('registerForm')
+//todo first Name 
 //importing files and functions 
 import "./ui.js"
 import "./state.js"
@@ -18,16 +19,27 @@ agreedCheckB.addEventListener("change",(e)=>{
 })
 //adding event sign up button 
 
-signUpBtn.addEventListener('click',(e)=>{
+form.addEventListener('submit',async(e)=>{
     e.preventDefault()
-    console.log('hello world ');
-    console.log(skill)
-    const check = [...skill].some((itm)=>{
-        return itm.checked
+    const formData = new FormData(form)
+    const formObject = Object.fromEntries(formData)
+    console.log(formObject)
+    // const userInfo = 
+    const res  = await fetch("https://69caf052ba5984c44bf3fc7c.mockapi.io/loginapi/v1/loginform",{
+        method:"POST",
+        headers:{
+            "Content-Type" : "application/json"
+        },
+        body:JSON.stringify(formObject)
     })
-    
+    // console.log(await res.json())
+    // form.reset()
+    // const data = await res.json()
+    // console.log(data)
+    // const check = [...skill].some((itm)=>{
+    //     return itm.checked
+    // })
+    // window.location.href = "loginSucces.html"
 })
-// let sting = "D"
-// let regex = /\bd\b/i
-// console.log(regex.test(sting))
+
                                                                                                                                                                                                                                                                                                                                                                                                       

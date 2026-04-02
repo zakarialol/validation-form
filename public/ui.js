@@ -25,6 +25,7 @@ const confirmPssError = document.querySelector('[data-valid="confirmPssError"]')
 //todo view button 
 const viewPasswordBtn = document.querySelector("[data-btn='viewPassword']")
 const viewConfirmPasswordBtn = document.querySelector("[data-btn='viewConfirmPassword']")
+console.log(viewConfirmPasswordBtn,"**")
 const PasswordInputDiv = document.querySelector("[data-input='PasswordInputDiv']")
 const viewPasswordbtnSvgs = document.querySelectorAll("[data-btn='viewPassword'] svg")
 const viewConfirmPasswordbtnSvgs = document.querySelectorAll("[data-btn='viewConfirmPassword'] svg")
@@ -43,6 +44,18 @@ const phoneSvgHolder = document.querySelector('[data-valid="phoneSvgsDiv"]')
 const phoneFalseSvg = document.getElementById('phoneFalsesvg')
 const phoneTrueSvg = document.getElementById('phoneTruesvg')
 const phoneErrParagraph = document.getElementById('phoneErrorParagraph')
+//todo address validation
+const addressTextArea = document.getElementById("address")
+const addressSvgsHolder = document.querySelector("[data-valid='addressSvgsDiv']")
+const addressFalseSvg = document.getElementById('addressFalsesvg')
+const addressTrueSvg = document.getElementById('addressTruesvg')
+const addressErroParagraph = document.getElementById('addressErrorParagraph')
+//todo postal code validation
+const postalCodeInput = document.getElementById('postal-code')
+const postalCodeSvgHolder = document.querySelector('[data-valid="postalcodeSvgsDiv"]')
+const postalCodeFalseSvg = document.getElementById('postalCodeFalsesvg')
+const postalCodeTrueSvg = document.getElementById("postalCodeTruesvg")
+const postalCodeErrorMsg = document.getElementById('postalCodeErroParagraph')
 // import elements
 import { signUpBtn } from "./state.js";
 export {agreedFalseFunc,agreedTrueFunc,}
@@ -63,17 +76,13 @@ function toggleFunc(isvisible){
 }
 // validtion of the first name 
 function ValidationFunc({El,regex,mainHolder,svgFalse,svgTrue,erroEl}){
-    console.log(mainHolder)
-        console.log('entred')
         let NameV = El.value.trim()
         let regexTest = regex
         if(regexTest.test(NameV)){
-            console.log('we entred the true stuation')
             ToggleSvgsFunc(svgTrue,svgFalse,mainHolder,true)
             if(erroEl) erroEl.classList.add('hidden')   
         }else if(NameV.trim()==="" || !regexTest.test(NameV)){
             ToggleSvgsFunc(svgTrue,svgFalse,mainHolder,false)
-            console.log('we entring the false setuation')
             if(erroEl) erroEl.classList.remove('hidden')   
         }
     // })
@@ -103,11 +112,9 @@ passwordInput.addEventListener('input',()=>{
     verfyPassword(passwordValue)
 })
 PasswordInputDiv.addEventListener('mouseenter',()=>{
-    console.log('hello world moues enter')
     viewPasswordBtn.classList.remove('hidden')
 })
 PasswordInputDiv.addEventListener('mouseleave',()=>{
-    console.log('hello world mouse leave')
     viewPasswordBtn.classList.add('hidden')
 })
 passwordInput.addEventListener('focus',()=>{
@@ -172,14 +179,12 @@ viewPasswordBtn.addEventListener('click',(e)=>{
     passwordInput.type =  passwordInput.type === "password"? "text" : "password";
     svgPassowrdEye(viewPasswordbtnSvgs)
     //     viewPasswordbtnSvgs.forEach(item =>{
-    //     console.log(item)
     //     item.classList.toggle('hidden')
     // })
 })
 // hide eye or view 
 function svgPassowrdEye(els){
     els.forEach(item =>{
-        console.log(item)
         item.classList.toggle('hidden')
     })
 }
@@ -189,7 +194,6 @@ viewConfirmPasswordBtn.addEventListener('click',(e)=>{
     // viewConfirmPasswordbtnSvgs 
     svgPassowrdEye(viewConfirmPasswordbtnSvgs)
 })
-//
 confirmPasswordInputDiv.addEventListener("mouseenter",()=>{
     viewConfirmPasswordBtn.classList.remove('hidden')
 })
@@ -209,11 +213,20 @@ emailInput.addEventListener('blur',()=>{
     console.log('you just left email input')
 })
 //todo phone validation 
-
 phoneInput.addEventListener('blur',()=>{
-    console.log('we just entered the phone number')
     ValidationFunc({
         El:phoneInput,regex:/^0\d{9}$/,mainHolder:phoneSvgHolder,svgFalse:phoneFalseSvg,svgTrue:phoneTrueSvg,erroEl:phoneErrParagraph,
     })
-    
+})
+//todo address
+addressTextArea.addEventListener('blur',()=>{
+        ValidationFunc({
+        El:addressTextArea,regex:/^(?=.{15,}$)[a-zA-Z0-9]+\s+.+$/,mainHolder:addressSvgsHolder,svgFalse:addressFalseSvg,svgTrue:addressTrueSvg,erroEl:addressErroParagraph,
+    })
+})
+// todo validation postal-code
+postalCodeInput.addEventListener('blur',()=>{
+    ValidationFunc({
+        El:postalCodeInput,regex:/^\d{5}$/,mainHolder:postalCodeSvgHolder,svgFalse:postalCodeFalseSvg,svgTrue:postalCodeTrueSvg,erroEl:postalCodeErrorMsg,
+    })
 })
