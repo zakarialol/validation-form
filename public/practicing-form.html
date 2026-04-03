@@ -9,6 +9,7 @@
 </head>
 <body class="content-center min-h-dvh">
     <form id="registerForm" action="">
+        <p id="test"></p>
             <div class="p-4 mx-auto space-y-4 w-fit box-shadow">
                 <p class="text-2xl text-center text-yellow-600 uppercase">registred form</p>
                 <div class="gridSplit">
@@ -16,7 +17,7 @@
                     <label class="labelStyle" for="name">first name</label>
                     <!-- linput -->
                      <div class="relative">
-                         <input id="firstName" name="firstName" class="w-full border" type="text"  name="" id="name">
+                         <input id="firstName" required name="firstName" class="w-full border" type="text"  name="" id="name">
                          <!-- svg div -->
                          <div data-valid="firstName" class="absolute hidden w-4 h-4 bg-white -top-2 -right-1">
                             <svg class="hidden" id="fNameFalsesvg" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -38,7 +39,7 @@
                     <label class ="labelStyle" for="last-name">last name</label>
                     <!-- linput -->
                      <div class="relative">
-                         <input class="w-full border" name="lastName" type="text" name="" id="last-name">
+                         <input class="w-full border" required name="lastName" type="text" name="" id="last-name">
                         <div data-valid="lastName" class="absolute hidden w-4 h-4 bg-white -top-2 -right-1">    
                             <svg class="hidden" id="LNameFalsesvg" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                 <title>error-filled</title>
@@ -61,7 +62,7 @@
                     <!-- input -->
                      <div class="relative">
                         <div data-input="PasswordInputDiv" class="relative">
-                            <input class="w-full pr-5 border" type="password" name="password" id="passwordInput" autocomplete="current-password">
+                            <input class="w-full pr-5 border" required type="password" name="password" id="passwordInput" autocomplete="current-password">
                             <!-- view the password  -->
                             <button type="button" data-btn="viewPassword" class="hidden absolute w-4 h-4 -translate-y-1/2 bg-transparent outline-none right-[2px] realtive top-1/2 cursor-pointer">
                                 <svg class="hidden" id="viewPasswordSvg" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -100,7 +101,7 @@
                      <div >
                         <div data-input="ConfirmPasswordInputDiv">
                             <div class="relative">
-                                <input class="w-full border" type="password" name="confirmPassowrd" id="confirm-pass">
+                                <input class="w-full border"  type="password" name="confirmPassowrd" id="confirm-pass">
                                 <button type="button" data-btn="viewConfirmPassword" class=" hidden absolute w-4 h-4 -translate-y-1/2 bg-transparent outline-none right-[2px] realtive top-1/2 cursor-pointer">
                                     <svg class="hidden" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <circle cx="12" cy="12" r="3.5" stroke="#222222"/>
@@ -128,7 +129,7 @@
                 </div>
                 <div class="gridSplit">
                     <label class ="labelStyle" for="select">gender</label>
-                    <select class="capitalize border outline-none opacity-50" name="gender" id="selectGender">
+                    <select class="capitalize border outline-none opacity-50" name="gender" id="selectGender" required>
                         <option class="labelStyle"  hidden selected disabled value="">select gender</option>
                         <option class ="labelStyle" value="male">male</option>
                         <option class ="labelStyle" value="famale">female</option>
@@ -140,7 +141,7 @@
                         <div class="flex justify-between" >
                             <div>
                                 <!-- input -->
-                                <input class="mr-1"   type="radio" value="css" name="skill" id="radio1" >
+                                <input class="mr-1" required type="radio" value="css" name="skill" id="radio1" >
                                 <!-- label -->
                                 <label class = "labelStyle" for="radio1" >css</label>
                             </div>
@@ -159,7 +160,7 @@
                     <!-- input -->
                     <div>
                         <div class="relative">
-                            <input class="w-full border" type="email"  name="" id="email">
+                            <input class="w-full border"  type="email"  name="email" id="email">
                             <div data-valid="eamilSvgsDiv" class="absolute hidden w-4 h-4 bg-white -top-2 -right-1">
                                 <svg class="hidden" id="emailFalsesvg" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <title>error-filled</title>
@@ -184,7 +185,7 @@
                     <label class="labelStyle" for="phone">phone number</label>
                     <!-- input -->
                      <div class="relative">
-                         <input class="w-full border" type="text" name="" id="phone">
+                         <input class="w-full border" type="text" name="phone" id="phone">
                          <div data-valid="phoneSvgsDiv"  class="absolute hidden w-4 h-4 bg-white -top-2 -right-1">
                             <svg class="hidden" id="phoneFalsesvg" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <title>error-filled</title>
@@ -233,7 +234,7 @@
                     <!-- input -->
                      <div>
                         <div class="relative">
-                            <input class="w-full border" type="text" name="postalCode" id="postal-code">
+                            <input class="w-full border"  type="text" name="postalCode" id="postal-code">
                             <div data-valid="postalcodeSvgsDiv" class="absolute hidden w-4 h-4 bg-white -top-2 -right-1">
                                     <svg class="hidden" id="postalCodeFalsesvg" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                         <title>error-filled</title>
@@ -254,7 +255,7 @@
                 </div>
                 <div >
                     <!-- checkbox -->
-                    <input  class="labelStyle" type="checkbox" name="agreedCheckBox" id="agreedCheckBox">
+                    <input  class="labelStyle" required type="checkbox" name="agreedCheckBox" id="agreedCheckBox">
                     <!-- label -->
                     <label class="labelStyle" for="agreedCheckBox">agreed to terms and conditions</label>
                 </div>

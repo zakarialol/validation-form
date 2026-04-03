@@ -25,7 +25,6 @@ const confirmPssError = document.querySelector('[data-valid="confirmPssError"]')
 //todo view button 
 const viewPasswordBtn = document.querySelector("[data-btn='viewPassword']")
 const viewConfirmPasswordBtn = document.querySelector("[data-btn='viewConfirmPassword']")
-console.log(viewConfirmPasswordBtn,"**")
 const PasswordInputDiv = document.querySelector("[data-input='PasswordInputDiv']")
 const viewPasswordbtnSvgs = document.querySelectorAll("[data-btn='viewPassword'] svg")
 const viewConfirmPasswordbtnSvgs = document.querySelectorAll("[data-btn='viewConfirmPassword'] svg")
@@ -57,7 +56,7 @@ const postalCodeFalseSvg = document.getElementById('postalCodeFalsesvg')
 const postalCodeTrueSvg = document.getElementById("postalCodeTruesvg")
 const postalCodeErrorMsg = document.getElementById('postalCodeErroParagraph')
 // import elements
-import { signUpBtn } from "./state.js";
+import { signUpBtn ,ObjectForm } from "./state.js";
 export {agreedFalseFunc,agreedTrueFunc,}
 // function to agreed checkbox
 function agreedTrueFunc(){
@@ -79,9 +78,13 @@ function ValidationFunc({El,regex,mainHolder,svgFalse,svgTrue,erroEl}){
         let NameV = El.value.trim()
         let regexTest = regex
         if(regexTest.test(NameV)){
-            ToggleSvgsFunc(svgTrue,svgFalse,mainHolder,true)
+            ToggleSvgsFunc(svgTrue,svgFalse,mainHolder,true);
+            storFormDataFunc(El,true)
+            console.log(ObjectForm)
             if(erroEl) erroEl.classList.add('hidden')   
-        }else if(NameV.trim()==="" || !regexTest.test(NameV)){
+        }else if(NameV.trim()=== "" || !regexTest.test(NameV)){
+            storFormDataFunc(El,false)
+            console.log(ObjectForm)
             ToggleSvgsFunc(svgTrue,svgFalse,mainHolder,false)
             if(erroEl) erroEl.classList.remove('hidden')   
         }
@@ -155,10 +158,13 @@ passwordInput.addEventListener('blur',()=>{
         passwordValidationObj.Passowrd3condition 
      ){
         // hide the condition div
+        storFormDataFunc(passwordInput,true)
         PasswordConditionUL.classList.add('hidden')
         passwordValidationObj.passwordValid = passwordInput.value.trim()
         ToggleSvgsFunc(pssFalseSvg,pssTrueeSvg,passwordSvgsHolder,false)
-     }
+     }else{
+        storFormDataFunc(passwordInput,false)
+    }
 })
 // function toggle class for password error
 function toggleErrorPasswordParagraphsFunc(el,condition){
@@ -167,9 +173,12 @@ function toggleErrorPasswordParagraphsFunc(el,condition){
 }
 confirmPass.addEventListener('blur',()=>{
         if(confirmPass.value.trim() === passwordValidationObj.passwordValid){
+            storFormDataFunc(confirmPass,true)
+            console.log(ObjectForm)
             ToggleSvgsFunc(confirmPssFalseSvg,confirmPssTrueSvg,confirmPssSvgsHolder,false)
             confirmPssError.classList.add('hidden')
         }else if(passwordInput.value.trim() !== "" && confirmPass.value.trim() !== passwordValidationObj.passwordValid){
+            storFormDataFunc(confirmPass,false)
             ToggleSvgsFunc(confirmPssFalseSvg,confirmPssTrueSvg,confirmPssSvgsHolder,true)
             confirmPssError.classList.remove('hidden')
         }
@@ -178,9 +187,7 @@ confirmPass.addEventListener('blur',()=>{
 viewPasswordBtn.addEventListener('click',(e)=>{
     passwordInput.type =  passwordInput.type === "password"? "text" : "password";
     svgPassowrdEye(viewPasswordbtnSvgs)
-    //     viewPasswordbtnSvgs.forEach(item =>{
-    //     item.classList.toggle('hidden')
-    // })
+
 })
 // hide eye or view 
 function svgPassowrdEye(els){
@@ -206,6 +213,12 @@ genderSelect.addEventListener('change',()=>{
         genderSelect.classList.remove('opacity-50')
     }
 })
+//todo function to store form data
+function storFormDataFunc(El,condition){
+        console.log('entring the storm data')
+        ;(ObjectForm[El.name]??={})[El.name] = condition
+        ;(ObjectForm[El.name]??={})["element"] = El
+}
 //todo validation of email
 emailInput.addEventListener('blur',()=>{
     console.log('validation of email')
