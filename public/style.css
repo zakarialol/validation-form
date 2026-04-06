@@ -9,9 +9,24 @@
     .gridSplit{
         @apply grid grid-cols-[200px_200px]
     }
+    .btn{
+        @apply text-xl text-white bg-black capitalize px-5 py-1 border border-white cursor-pointer rounded-xl inline-block min-w-[120px] 
+    }
+    .box-shadow{
+        box-shadow: 4px 9px 50px -1 ;
+    }
+    .leaf-style{
+        @apply absolute w-[50px] h-[70px] object-contain
+    }
+    .smallText {
+        @apply font-semibold capitalize cursor-pointer text-[#8B302D]
+    }
 }
 @layer utilities{
     .box-shadow{
-        box-shadow: 0px 0px 3px gray;
+        box-shadow: 0px 0px 50px -1px rgba(0,0,0,0.25);
+    }
+    .marginTp {
+        margin-top: 1500px !important;
     }
 }

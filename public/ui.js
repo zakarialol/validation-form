@@ -78,6 +78,7 @@ function ValidationFunc({El,regex,mainHolder,svgFalse,svgTrue,erroEl}){
         let NameV = El.value.trim()
         let regexTest = regex
         if(regexTest.test(NameV)){
+            El.classList.remove("box-ShadowErrorClr")
             ToggleSvgsFunc(svgTrue,svgFalse,mainHolder,true);
             storFormDataFunc(El,true)
             console.log(ObjectForm)
@@ -158,6 +159,7 @@ passwordInput.addEventListener('blur',()=>{
         passwordValidationObj.Passowrd3condition 
      ){
         // hide the condition div
+        passwordInput.classList.remove("box-ShadowErrorClr")
         storFormDataFunc(passwordInput,true)
         PasswordConditionUL.classList.add('hidden')
         passwordValidationObj.passwordValid = passwordInput.value.trim()
@@ -173,6 +175,7 @@ function toggleErrorPasswordParagraphsFunc(el,condition){
 }
 confirmPass.addEventListener('blur',()=>{
         if(confirmPass.value.trim() === passwordValidationObj.passwordValid){
+            confirmPass.classList.remove("box-ShadowErrorClr")
             storFormDataFunc(confirmPass,true)
             console.log(ObjectForm)
             ToggleSvgsFunc(confirmPssFalseSvg,confirmPssTrueSvg,confirmPssSvgsHolder,false)
