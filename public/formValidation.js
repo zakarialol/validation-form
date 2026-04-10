@@ -1,5 +1,5 @@
 //import thing we need 
-import {form ,ObjectForm} from "./state.js"
+import {form ,ObjectForm,emailverification} from "./state.js"
 export function validFormInputsFunc(){
     console.log('hello we are inside the validation form')
      const formData = new FormData(form);
@@ -12,4 +12,11 @@ export function validFormInputsFunc(){
             block:"center"
     })
     NotValidInput?.element.classList.add('box-ShadowErrorClr')
+    console.log(NotValidInput,"not valid input")
+    if(!NotValidInput){
+        emailverification = ObjectForm.email.element.value.trim()
+        return true
+    }else{
+        return false
+    }
 }

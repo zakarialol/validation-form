@@ -4,10 +4,10 @@
 
 @layer components{
     .labelStyle{
-        @apply font-bold capitalize
+        @apply font-bold capitalize text-sm
     }
     .gridSplit{
-        @apply grid grid-cols-[200px_200px]
+        @apply grid grid-cols-[160px_auto]
     }
     .btn{
         @apply text-xl text-white bg-black capitalize px-5 py-1 border border-white cursor-pointer rounded-xl inline-block min-w-[120px] 
@@ -16,10 +16,25 @@
         box-shadow: 4px 9px 50px -1 ;
     }
     .leaf-style{
-        @apply absolute w-[50px] h-[70px] object-contain
+        @apply absolute w-[25px]
     }
     .smallText {
         @apply font-semibold capitalize cursor-pointer text-[#8B302D]
+    }
+    .inputStyle{
+        @apply rounded-md p-2
+    }
+    .svgHolder{
+        @apply absolute -top-2 -right-1 bg-white rounded-full
+    }
+    .headTitle{
+        @apply text-center text-[#444444] capitalize
+    }
+    .label{
+        @apply text-[#444444] capitalize mb-3 block
+    }
+    .vefiyNumber{
+      @apply  w-[50px] h-[50px] rounded-full border-[#444444] font-semibold text-2xl border px-[18px] py-[10px] outline-none focus:shadow-[0_0_5px_#8B302D]
     }
 }
 @layer utilities{
@@ -28,5 +43,8 @@
     }
     .marginTp {
         margin-top: 1500px !important;
+    }
+    .box-ShadowErrorClr{
+        box-shadow: 0px 0px 5px 1px red;
     }
 }

@@ -20,7 +20,11 @@ agreedCheckB.addEventListener("change",(e)=>{
 
 form.addEventListener('submit',async(e)=>{
     e.preventDefault()
-    validFormInputsFunc()
+    const valid = validFormInputsFunc()
+    console.log("valid",valid)
+    if(valid){
+        console.log('enter virifation email')
+    }
     // const res  = await fetch("https://69caf052ba5984c44bf3fc7c.mockapi.io/loginapi/v1/loginform",{
     //     method:"POST",
     //     headers:{

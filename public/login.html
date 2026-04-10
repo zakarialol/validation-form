@@ -10,28 +10,32 @@
     <!-- todo main background -->
     <main  class="h-dvh w-dvw bg-[url(../svgs/formbackground.png)] bg-center bg-no-repeat bg-cover content-center">
         <!-- todo background -->
-        <div class="w-full h-[95%] bg-[url(../svgs/leaves.png)] bg-no-repeat bg-center bg-cover mx-auto flex items-center justify-center">
-            <!--todo ling form  -->
-            <div class="border p-4 border-white mx-auto w-[90%] bg-opacity-25 bg-white relative rounded-[31px] box-shadow backdrop-blur-sm">
-                <img class="leaf-style -top-8" src="../svgs/leaf_03 1@2x.png" alt="">
-                <img class="leaf-style top-1/4 -right-[20px]" src="../svgs/leaf_04 1.png" alt="">
-                <p class="text-center capitalize font-semibold text-[#8B302D] text-2xl mb-4">sign up</p>
+        <div class="w-full h-[95%] bg-no-repeat bg-center bg-cover mx-auto flex items-center justify-center">
+            <!--todo form  -->
+            <div class="border p-10 border-white mx-auto w-[90%] bg-opacity-25 bg-white relative rounded-[31px] box-shadow backdrop-blur-sm">
+                <!--* leaf 1 -->
+                <img class="leaf-style -top-[10px]" src="../svgs/leaf_03 1@2x.png" alt="">
+                <!--* leaf 2 -->
+                <img class="leaf-style top-1/4 -right-3" src="../svgs/leaf_04 1.png" alt="">
+                <p class="text-center capitalize font-semibold text-[#8B302D] text-2xl mb-10">sign up</p>
                 <!-- form element  -->
-                <form action="" class="space-y-4">
-                    <div class="w-full">
-                        <input type="text" class="w-full" placeholder="username or email">
+                <form data-form="login-form" action="" class="">
+                    <div class="w-full mb-4">
+                        <input data-input="loginUser" type="text" class="w-full inputStyle" placeholder="username or email">
                     </div>
-                    <div class="w-full">
-                        <input type="text" class="w-full" placeholder="password">
+                    <div class="relative w-full mb-4">
+                        <input data-input="password" type="text" class="w-full inputStyle" placeholder="password">
+                            <img src="../svgs/leaf_04 2.png" class="absolute -bottom-1 -right-2 leaf-style" alt="" srcset="">
                     </div>
-                    <button type="submit" class="font-semibold text-white w-full bg-[#8D2C22]">login</button>
-                    <div class="flex items-center justify-between">
-                        <p class="smallText">forget password</p>
-                        <p class="smallText">sign up</p>
+                    <button  type="submit" class=" inputStyle font-semibold text-white w-full bg-[#8D2C22]">login</button>
+                    <div class="flex items-center justify-between mt-10">
+                        <a href="./emailVerify.html" class="smallText">forget password</a>
+                        <a href="./signupForm.html" class="smallText">sign up</a>
                     </div>
                 </form>
             </div>
         </div>
     </main>
+    <script type="module" src="./login.js"></script>
 </body>
 </html>

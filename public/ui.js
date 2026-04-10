@@ -56,7 +56,7 @@ const postalCodeFalseSvg = document.getElementById('postalCodeFalsesvg')
 const postalCodeTrueSvg = document.getElementById("postalCodeTruesvg")
 const postalCodeErrorMsg = document.getElementById('postalCodeErroParagraph')
 // import elements
-import { signUpBtn ,ObjectForm } from "./state.js";
+import { signUpBtn ,ObjectForm,emailverification } from "./state.js";
 export {agreedFalseFunc,agreedTrueFunc,}
 // function to agreed checkbox
 function agreedTrueFunc(){
