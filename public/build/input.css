@@ -954,16 +954,12 @@ video {
   background-image: url(../svgs/formbackground.png);
 }
 
-.bg-gradient-to-r{
-  background-image: linear-gradient(to right, var(--tw-gradient-stops));
-}
-
 .bg-\[url\(\/svgs\/formbackground\.png\)\]{
   background-image: url(/svgs/formbackground.png);
 }
 
-.bg-\[url\(\.\/svgs\/formbackground\.png\)\]{
-  background-image: url(./svgs/formbackground.png);
+.bg-gradient-to-r{
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
 }
 
 .from-\[\#8B302D\]{
@@ -1116,11 +1112,6 @@ video {
 .text-white{
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity, 1));
-}
-
-.text-\[\#2d8b4c\]{
-  --tw-text-opacity: 1;
-  color: rgb(45 139 76 / var(--tw-text-opacity, 1));
 }
 
 .opacity-100{

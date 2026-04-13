@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>verification code for email</title>
-    <link rel="stylesheet" href="../build/input.css">
+    <link rel="stylesheet" href="./build/input.css">
 </head>
 <body>
     <main class="p-4 ">
@@ -17,7 +17,7 @@
                 <p class="w-full text-center headTitle">verification</p>
             </div>
             <div class="mb-6 text-[#444444]">
-                    <p>We have sent the verification code to your email address <span class="text-[#8B302D]">example@gmail.com</span></p>  
+                    <p>We have sent the verification code to your email address <span data-email="email" class="text-[#8B302D]">example@gmail.com</span></p>  
             </div>
             <!-- input -->
                 <div class="flex justify-between mx-5">
@@ -30,7 +30,9 @@
                 <a href="" class="cursor-pointer">If you didn’t receive a code, <span class="text-[#8B302D] cursor-pointer" >resend</span></a>
             </div>
             <!--todo send button  -->
-            <button type="button" class="text-white text-center py-[15px] bg-gradient-to-r from-[#8B302D] to-[#3A2625] w-full rounded-[30px] capitalize cursor-pointer">confirm</button>
+            <button data-btn="confirmOTP" type="button" class="text-white text-center py-[15px] bg-gradient-to-r from-[#8B302D] to-[#3A2625] w-full rounded-[30px] capitalize cursor-pointer">confirm</button>
+            <input data-opt="test" type="text" class="border">
     </main>
 </body>
+<script type="module" src="emailCode.js"></script>
 </html>
