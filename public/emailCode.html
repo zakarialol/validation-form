@@ -20,18 +20,21 @@
                     <p>We have sent the verification code to your email address <span data-email="email" class="text-[#8B302D]">example@gmail.com</span></p>  
             </div>
             <!-- input -->
-                <div class="flex justify-between mx-5">
-                    <input type="number" class="vefiyNumber" maxlength="1">
-                    <input type="number" class="vefiyNumber" maxlength="1">
-                    <input type="number" class="vefiyNumber" maxlength="1">
-                    <input type="number" class="vefiyNumber" maxlength="1">
+                <div data-div="otp-inputs" class="flex justify-between mx-5">
+                    <input type="text" inputmode="numeric" pattern="[0-9]"  class="vefiyNumber" maxlength="1">
+                    <input type="text" inputmode="numeric" pattern="[0-9]" class="vefiyNumber" maxlength="1">
+                    <input type="text" inputmode="numeric" pattern="[0-9]" class="vefiyNumber" maxlength="1">
+                    <input type="text" inputmode="numeric" pattern="[0-9]" class="vefiyNumber" maxlength="1">
                 </div>
+            <!-- error msg for otp if it wrong  -->
+             <div class="">
+                <p data-otp="otp-holder"  class="text-center">exampleError</p>
+             </div>
             <div class="text-[14px] text-center text-[#ABABAB] mt-[14px] mb-8 ">
-                <a href="" class="cursor-pointer">If you didn’t receive a code, <span class="text-[#8B302D] cursor-pointer" >resend</span></a>
+                <a href="" class="cursor-pointer">If you didn’t receive a code,<span class="text-[#8B302D] cursor-pointer" >resend</span></a>
             </div>
             <!--todo send button  -->
             <button data-btn="confirmOTP" type="button" class="text-white text-center py-[15px] bg-gradient-to-r from-[#8B302D] to-[#3A2625] w-full rounded-[30px] capitalize cursor-pointer">confirm</button>
-            <input data-opt="test" type="text" class="border">
     </main>
 </body>
 <script type="module" src="emailCode.js"></script>

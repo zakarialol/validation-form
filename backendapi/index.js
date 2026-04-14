@@ -40,32 +40,7 @@ app.get("/emailCode",(req,res)=>{
     console.log("error",err)
   }
 })
-console.log(process.env.easyMailToken,"procces.env")
-// retrive the email code 
-app.post("/retriveEmailCode",async(req,res)=>{
-
-  try{
-    const {email = "zakariaeaitbibote@gmail.com"} = req.body
-    const ress = await fetch(`https://easyemailapi.com/api/verify/${encodeURIComponent(email)}`,{
-      headers : {
-        Authorization:`Bearer ${process.env.easyMailToken}` 
-      }
-    })
-    console.log(ress.status, "ress.status **##**")
-    if(!ress.ok) throw new Error("something went wrong");
-    const data = await ress.json()
-    console.log(data)
-    res.json({
-      suscces : true ,
-      data : data
-    })
-  }catch(err){
-    console.log("error",err)
-    res.status(500).json({ success: false, error: err.message });
-  }
-})
 // about send code to gmail
-console.log("gmailPass",process.env.gmailPass)
 const transporder = nodemailer.createTransport({
   service:"gmail",
   auth:{
@@ -98,13 +73,20 @@ app.post("/send-otp", async (req, res) => {
 });
 //verify the email 
 app.post("/verify-otp", (req, res) => {
-  const { email, otp } = req.body;
-  console.log(email,otp,"opt and email")
-  if (otpStore[email] == otp) {
-    res.json({ message: "Verified ✅" });
-  } else {
-    res.status(400).json({ message: "Invalid ❌" });
+  try{
+      const { email, otp } = req.body;
+      console.log(email,otp,"opt and email")
+      console.log(typeof otp)
+      console.log(typeof otpStore[email])
+      if (otpStore[email] === Number(otp)) {
+        res.json({success:true, message: "Verified ✅" });
+      } else {
+        res.status(400).json({success:false, message: "invalid number" });
+      }
+  }catch{
+     res.status(400).json({success:true, message: "invalid number" });
   }
+
 });
 
 app.listen(3000, () => console.log("Server running"));
