@@ -7,6 +7,12 @@ const firstNameSvgsHolder = document.querySelector('[data-valid="firstName"]')
 const lTrueSvg = document.querySelector('[data-valid="lastName"] #LNameTruesvg')
 const lFalseSvg = document.querySelector('[data-valid="lastName"] #LNameFalsesvg')
 const lastNameSvgsHolder = document.querySelector('[data-valid="lastName"]')
+const passwordConditions = document.getElementById('passwordConditions')
+const notMuchPass = document.getElementById('notMuchPass')
+const emailErroMsg = document.getElementById('emailErroMsg')
+const phoneMsgError = document.getElementById('phoneMsgError')
+const adreessErrorMsg = document.getElementById('adreessErrorMsg')
+const postalErrorMsg = document.getElementById('postalErrorMsg')
 //todo passord selectors 
 const passwordInput =  document.getElementById("passwordInput")
 const PasswordConditionUL = document.getElementById("PasswordConditionUL")
@@ -56,7 +62,7 @@ const postalCodeFalseSvg = document.getElementById('postalCodeFalsesvg')
 const postalCodeTrueSvg = document.getElementById("postalCodeTruesvg")
 const postalCodeErrorMsg = document.getElementById('postalCodeErroParagraph')
 // import elements
-import { signUpBtn ,ObjectForm,emailverification } from "./state.js";
+import { signUpBtn ,ObjectForm,verfyPassword,ToggleSvgsFunc } from "./state.js";
 export {agreedFalseFunc,agreedTrueFunc,}
 // function to agreed checkbox
 function agreedTrueFunc(){
@@ -74,20 +80,20 @@ function toggleFunc(isvisible){
     signUpBtn.classList.toggle("opacity-100",isvisible)
 }
 // validtion of the first name 
-function ValidationFunc({El,regex,mainHolder,svgFalse,svgTrue,erroEl}){
+function ValidationFunc({El,regex,mainHolder,svgFalse,svgTrue,erroEl,elHeight}){
         let NameV = El.value.trim()
         let regexTest = regex
         if(regexTest.test(NameV)){
             El.classList.remove("box-ShadowErrorClr")
-            ToggleSvgsFunc(svgTrue,svgFalse,mainHolder,true);
+            ToggleSvgsFunc(svgTrue,svgFalse,mainHolder,false);
             storFormDataFunc(El,true)
             console.log(ObjectForm)
-            if(erroEl) erroEl.classList.add('hidden')   
+            if(erroEl) erroEl.style.height = 0 
         }else if(NameV.trim()=== "" || !regexTest.test(NameV)){
             storFormDataFunc(El,false)
             console.log(ObjectForm)
-            ToggleSvgsFunc(svgTrue,svgFalse,mainHolder,false)
-            if(erroEl) erroEl.classList.remove('hidden')   
+            ToggleSvgsFunc(svgTrue,svgFalse,mainHolder,true)
+            if(erroEl) erroEl.style.height = elHeight + "px" 
         }
     // })
 }
@@ -99,11 +105,11 @@ firstNameInput.addEventListener("blur",()=>{
 })
 
 // validation of the svgs 
-function ToggleSvgsFunc(svgFalseEl,svgTrueEl,mainHolder,condition){
-            mainHolder.classList.remove('hidden')
-            svgFalseEl.classList.toggle('hidden',!condition)
-            svgTrueEl.classList.toggle('hidden',condition)
-}
+// function ToggleSvgsFunc(svgFalseEl,svgTrueEl,mainHolder,condition){
+//             mainHolder.classList.remove('hidden')
+//             svgFalseEl.classList.toggle('hidden',!condition)
+//             svgTrueEl.classList.toggle('hidden',condition)
+// }
 // validtion of last name 
 lastNameInput.addEventListener("blur",()=>{
     ValidationFunc({
@@ -111,9 +117,10 @@ lastNameInput.addEventListener("blur",()=>{
     })
 })
 // about passord
+let passwordValidationObj = {}
 passwordInput.addEventListener('input',()=>{
     let passwordValue = passwordInput.value.trim()
-    verfyPassword(passwordValue)
+    verfyPassword({passwordInputValue:passwordValue,passValidationObject:passwordValidationObj,passwordValidation:{upperCaseLetter:upperCaseLetterForPassword,number:numberPasswordForPassword,specialCarater:scpecialCaraterForPassword}})
 })
 PasswordInputDiv.addEventListener('mouseenter',()=>{
     viewPasswordBtn.classList.remove('hidden')
@@ -122,35 +129,11 @@ PasswordInputDiv.addEventListener('mouseleave',()=>{
     viewPasswordBtn.classList.add('hidden')
 })
 passwordInput.addEventListener('focus',()=>{
-    PasswordConditionUL.classList.remove('hidden')
+    console.log(passwordConditions.scrollHeight)
+    // PasswordConditionUL.classList.remove('hidden')
+    PasswordConditionUL.style.height = passwordConditions.scrollHeight + "px"
 })
-// function to verfy password input 
-let passwordValidationObj = {}
-function verfyPassword(passwordInputValue){
-    if(/(?=.*[A-Z]).{6,}/.test(passwordInputValue)){
-        toggleErrorPasswordParagraphsFunc(upperCaseLetterForPassword,true)
-        passwordValidationObj.Passowrd1condition = true
-    }else{
-        toggleErrorPasswordParagraphsFunc(upperCaseLetterForPassword,false)
-        passwordValidationObj.Passowrd1condition = ""
-    }
 
-    if(/\d+/.test(passwordInputValue)){
-        toggleErrorPasswordParagraphsFunc(numberPasswordForPassword,true)
-        passwordValidationObj.Passowrd2condition = true
-    }else{
-        toggleErrorPasswordParagraphsFunc(numberPasswordForPassword,false)
-        passwordValidationObj.Passowrd2condition = ""
-    }
-
-    if(/[^a-zA-Z0-9]/.test(passwordInputValue)){
-        toggleErrorPasswordParagraphsFunc(scpecialCaraterForPassword,true)
-        passwordValidationObj.Passowrd3condition = true
-    }else{
-        toggleErrorPasswordParagraphsFunc(scpecialCaraterForPassword,false)
-        passwordValidationObj.Passowrd3condition = ""
-    }
-}
 //
 passwordInput.addEventListener('blur',()=>{
     // viewPasswordBtn.classList.add("hidden")
@@ -161,29 +144,28 @@ passwordInput.addEventListener('blur',()=>{
         // hide the condition div
         passwordInput.classList.remove("box-ShadowErrorClr")
         storFormDataFunc(passwordInput,true)
-        PasswordConditionUL.classList.add('hidden')
+        PasswordConditionUL.style.height = 0 + "px"
         passwordValidationObj.passwordValid = passwordInput.value.trim()
-        ToggleSvgsFunc(pssFalseSvg,pssTrueeSvg,passwordSvgsHolder,false)
+        ToggleSvgsFunc(pssFalseSvg,pssTrueeSvg,passwordSvgsHolder,true)
      }else{
+        ToggleSvgsFunc(pssFalseSvg,pssTrueeSvg,passwordSvgsHolder,false)
         storFormDataFunc(passwordInput,false)
     }
 })
-// function toggle class for password error
-function toggleErrorPasswordParagraphsFunc(el,condition){
-        el.classList.toggle("text-red-500",!condition)
-        el.classList.toggle("text-green-500",condition)
-}
 confirmPass.addEventListener('blur',()=>{
-        if(confirmPass.value.trim() === passwordValidationObj.passwordValid){
+        console.log(passwordValidationObj,"***")
+        if(confirmPass.value.trim() === passwordInput.value.trim()){
             confirmPass.classList.remove("box-ShadowErrorClr")
             storFormDataFunc(confirmPass,true)
             console.log(ObjectForm)
-            ToggleSvgsFunc(confirmPssFalseSvg,confirmPssTrueSvg,confirmPssSvgsHolder,false)
-            confirmPssError.classList.add('hidden')
-        }else if(passwordInput.value.trim() !== "" && confirmPass.value.trim() !== passwordValidationObj.passwordValid){
-            storFormDataFunc(confirmPass,false)
             ToggleSvgsFunc(confirmPssFalseSvg,confirmPssTrueSvg,confirmPssSvgsHolder,true)
-            confirmPssError.classList.remove('hidden')
+            console.log(confirmPssError,notMuchPass.scrollHeight)
+            confirmPssError.style.height = 0 + "px"
+        }else if(passwordInput.value.trim() !== "" && confirmPass.value.trim() !== passwordInput.value.trim()){
+            console.log("password don't much")
+            storFormDataFunc(confirmPass,false)
+            ToggleSvgsFunc(confirmPssFalseSvg,confirmPssTrueSvg,confirmPssSvgsHolder,false)
+             confirmPssError.style.height = notMuchPass.scrollHeight + 'px'
         }
 })
 //view button 
@@ -218,31 +200,35 @@ genderSelect.addEventListener('change',()=>{
 })
 //todo function to store form data
 function storFormDataFunc(El,condition){
-        console.log('entring the storm data')
+        console.log('entring the stor data')
         ;(ObjectForm[El.name]??={})[El.name] = condition
         ;(ObjectForm[El.name]??={})["element"] = El
 }
 //todo validation of email
 emailInput.addEventListener('blur',()=>{
     console.log('validation of email')
-    ValidationFunc({El:emailInput,regex:/^[^\s@]+@[^\s@]+\.[^\s@]+$/,mainHolder:emailSvgsDiv,svgFalse:emailFalseSvg,svgTrue:emailTrueSvg,erroEl:emailErrorParagraph})
+    let heightt = emailErroMsg.scrollHeight
+    ValidationFunc({El:emailInput,regex:/^[^\s@]+@[^\s@]+\.[^\s@]+$/,mainHolder:emailSvgsDiv,svgFalse:emailFalseSvg,svgTrue:emailTrueSvg,erroEl:emailErrorParagraph,elHeight:heightt})
     console.log('you just left email input')
 })
 //todo phone validation 
 phoneInput.addEventListener('blur',()=>{
+    let heightt = phoneMsgError.scrollHeight
     ValidationFunc({
-        El:phoneInput,regex:/^0\d{9}$/,mainHolder:phoneSvgHolder,svgFalse:phoneFalseSvg,svgTrue:phoneTrueSvg,erroEl:phoneErrParagraph,
+        El:phoneInput,regex:/^0\d{9}$/,mainHolder:phoneSvgHolder,svgFalse:phoneFalseSvg,svgTrue:phoneTrueSvg,erroEl:phoneErrParagraph,elHeight:heightt
     })
 })
 //todo address
 addressTextArea.addEventListener('blur',()=>{
+    let heightt = adreessErrorMsg.scrollHeight
         ValidationFunc({
-        El:addressTextArea,regex:/^(?=.{15,}$)[a-zA-Z0-9]+\s+.+$/,mainHolder:addressSvgsHolder,svgFalse:addressFalseSvg,svgTrue:addressTrueSvg,erroEl:addressErroParagraph,
+        El:addressTextArea,regex:/^(?=.{15,}$)[a-zA-Z0-9]+\s+.+$/,mainHolder:addressSvgsHolder,svgFalse:addressFalseSvg,svgTrue:addressTrueSvg,erroEl:addressErroParagraph,elHeight:heightt
     })
 })
 // todo validation postal-code
 postalCodeInput.addEventListener('blur',()=>{
+    let heightt = postalErrorMsg.scrollHeight
     ValidationFunc({
-        El:postalCodeInput,regex:/^\d{5}$/,mainHolder:postalCodeSvgHolder,svgFalse:postalCodeFalseSvg,svgTrue:postalCodeTrueSvg,erroEl:postalCodeErrorMsg,
+        El:postalCodeInput,regex:/^\d{5}$/,mainHolder:postalCodeSvgHolder,svgFalse:postalCodeFalseSvg,svgTrue:postalCodeTrueSvg,erroEl:postalCodeErrorMsg,elHeight:heightt
     })
 })

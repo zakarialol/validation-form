@@ -34,7 +34,22 @@
         @apply text-[#444444] capitalize mb-3 block
     }
     .vefiyNumber{
-      @apply  w-[50px] h-[50px] rounded-full border-[#444444] font-semibold text-2xl border px-[18px] py-[10px] outline-none focus:shadow-[0_0_5px_#8B302D]
+      @apply  w-[50px] h-[50px] rounded-full border-[#444444] font-semibold text-2xl border text-center outline-none focus:shadow-[0_0_5px_#8B302D]
+    }
+    .svgHolderFoNewpasswordInputs{
+        @apply absolute -top-2 right-2 bg-white rounded-full
+    }
+    .heightFull{
+        @apply content-center h-dvh
+    }
+    .widthAndBorder{
+        @apply w-[700px] mx-auto border border-[rgb(128_128_128_/_20%)]
+    }
+    .msgTransition{
+        @apply h-0 transition-all duration-700 overflow-hidden
+    }
+    .flexUserInfo{
+        @apply flex items-center gap-5 
     }
 }
 @layer utilities{

@@ -27,7 +27,7 @@ async function CheckApiUsersFunc(){
     }
 }
 // function to verfiy the user
-function verifyUserFunc(user,password,data){
+async function verifyUserFunc(user,password,data){
     console.log(user,'user')
     console.log(password,'password')
     let userFound = data.find(itm=>{
@@ -36,7 +36,18 @@ function verifyUserFunc(user,password,data){
         }
     })
     console.log(userFound,'user')
+    console.log(typeof userFound)
     if(userFound && userFound.password === password){
+        const res = await fetch("http://localhost:3000/storeValidUser",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json",
+            },
+            body:JSON.stringify(userFound)
+        })
+        const data = await res.json()
+        console.log(data,'data')
+        window.location.href = "./dashboard.html"
         console.log("loggin succes congratulition ***")
     }else{
         console.log("email or password wrong")
