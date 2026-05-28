@@ -1,33 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>login page</title>
+    <link rel="icon" href="./svgs/leaf_03 1@2x.png">
     <link rel="stylesheet" href="./build/input.css">
 </head>
+
 <body class="md:heightFull">
     <!-- todo main background -->
-    <main  class="h-dvh w-dvw bg-[url(../svgs/formbackground.png)] bg-center bg-no-repeat bg-cover content-center md:widthAndBorder md:h-[500px] md:bg-none md:border-none">
+    <main
+        class="h-dvh w-dvw bg-[url(../svgs/formbackground.png)] bg-center bg-no-repeat bg-cover content-center md:widthAndBorder md:h-[500px] md:bg-none md:border-none">
         <!-- todo background -->
         <div class="w-full h-[95%] bg-no-repeat bg-center bg-cover mx-auto flex items-center justify-center">
             <!--todo form  -->
-            <div class="border p-10 border-white mx-auto w-[90%] bg-opacity-25 bg-white relative rounded-[31px] box-shadow backdrop-blur-sm">
+            <div
+                class="border p-10 border-white mx-auto w-[90%] bg-opacity-25 bg-white relative rounded-[31px] box-shadow backdrop-blur-sm">
                 <!--* leaf 1 -->
                 <img class="leaf-style -top-[10px]" src="./svgs/leaf_03 1@2x.png" alt="">
                 <!--* leaf 2 -->
                 <img class="leaf-style top-1/4 -right-3" src="./svgs/leaf_04 1.png" alt="">
                 <p class="text-center capitalize font-semibold text-[#8B302D] text-2xl mb-10">sign up</p>
+                <div class="mb-4 text-xs text-red-500 msgTransition" id="signUpErrorHolder">
+                    <p id="signUpErrorMsg">
+                        username or password ain't correct
+                    </p>
+                </div>
                 <!-- form element  -->
                 <form data-form="login-form" action="" class="">
                     <div class="w-full mb-4">
-                        <input data-input="loginUser" type="text" class="w-full inputStyle md:border" placeholder="username or email">
+                        <input data-input="loginUser" type="text" class="w-full inputStyle md:border"
+                            placeholder="username or email">
                     </div>
                     <div class="relative w-full mb-4">
-                        <input data-input="password" type="text" class="w-full inputStyle md:border" placeholder="password">
-                            <img src="./svgs/leaf_04 2.png" class="absolute -bottom-1 -right-2 leaf-style" alt="" srcset="">
+                        <input data-input="password" type="text" class="w-full inputStyle md:border"
+                            placeholder="password">
+                        <img src="./svgs/leaf_04 2.png" class="absolute -bottom-1 -right-2 leaf-style" alt="" srcset="">
                     </div>
-                    <button  type="submit" class=" inputStyle font-semibold text-white w-full bg-[#8D2C22]">login</button>
+                    <div>
+                        <button id="loginButton"
+                            class=" inputStyle font-semibold flex items-center gap-2 text-white w-full justify-center bg-[#8D2C22]"
+                            type="submit">login</button>
+                    </div>
                     <div class="flex items-center justify-between mt-10">
                         <a href="./forgetPassEmail.html" class="smallText">forget password</a>
                         <a href="./signupForm.html" class="smallText">sign up</a>
@@ -38,4 +54,5 @@
     </main>
     <script type="module" src="./login.js"></script>
 </body>
+
 </html>

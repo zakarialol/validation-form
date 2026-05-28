@@ -23,7 +23,8 @@ const NewPassNbr = document.getElementById("psswordContNbrL")
 const NewPassSpeclLtr = document.getElementById("passwordContSpclCaratrL")
 // import things i need
 const NewPassFormSubmit = document.getElementById('NewPassForm')
-import { verfyPassword,objeNewPass,ToggleSvgsFunc } from "./state.js"
+const newPasswordSendButton = document.getElementById('newPasswordSendButton')
+import { verfyPassword,objeNewPass,ToggleSvgsFunc,svg } from "./state.js"
 //
 confirmPasswordInputDiv.addEventListener("mouseenter",()=>{
     console.log('you just hover on the new passworkd')
@@ -115,10 +116,10 @@ confirmPass.addEventListener('blur',()=>{
 
 NewPassFormSubmit.addEventListener('submit',async(e)=>{
     e.preventDefault()
-    console.log('hello you just pressed the submit button')
-    NewPassFormSubmit.disabled = true
+    console.log('hello world u just pressed the send fogsetnewpass')
     let response = await fetch("http://localhost:3000/getemailCodeSendOn")
     let result = await response.json()
+    console.log(result,"result")
     console.log(result.email)
     const formData = new FormData(NewPassFormSubmit);
     let ObjectFormValues = Object.values(objeNewPass)
@@ -132,22 +133,34 @@ NewPassFormSubmit.addEventListener('submit',async(e)=>{
     NotValidInput?.element.classList.add('box-ShadowErrorClr')
     console.log(NotValidInput,"not valid input")
     if(!NotValidInput){
-        // console.log(ObjectForm,"objecform")
-        // emailverification.email = ObjectForm.email.element.value.trim();
-        // console.log(emailverification,"email verification")
-        return true
+        console.log('you can cange the password')
+       const id = await renewPasswordInMockApiFunc(result.email)
+       await changethePasswordFunc(newPassObj.passwordValid,id)
     }
 })
 //function to fund the user that i will change the password on
-
-//
-// export function validFormInputsFunc(){
-//     if(!NotValidInput){
-//         console.log(ObjectForm,"objecform")
-//         emailverification.email = ObjectForm.email.element.value.trim();
-//         console.log(emailverification,"email verification")
-//         return true
-//     }else{
-//         return false
-//     }
-// }
+async function renewPasswordInMockApiFunc(email){
+    const response = await fetch("https://69caf052ba5984c44bf3fc7c.mockapi.io/loginapi/v1/loginform")
+    const users = await response.json()
+    console.log(email,"email**##**")
+    console.log(users,"usersfound")
+    const user = users.find(user=>{
+        return user.email === email
+    })
+    console.log(user,"user valid")
+    return user.id
+}
+async function changethePasswordFunc(newpassword,id){
+    console.log("this the new password and id that we will change",newpassword,id)
+    const response = await fetch(`https://69caf052ba5984c44bf3fc7c.mockapi.io/loginapi/v1/loginform/${id}`,{
+        method:"PUT",
+        headers: {
+            "Content-Type" : "application/json"
+        },
+        body: JSON.stringify({
+            password :newpassword
+        })
+    })
+    const users = await response.json()
+    console.log(users,"users respnse from the server")
+}

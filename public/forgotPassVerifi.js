@@ -20,7 +20,10 @@ verificationInputFunc(otpInputs)
 // confirm otp button
 confirmOTP.addEventListener('click',async ()=>{
     // console.log('you just presset the confirmOtp')
-    await confirmOptFunc({inputs:otpInputs,erroOtpMsg:erroMsgHolder,page:"./ForgSetNewPass.html",email:emailHolder.textContent})
+    const data = await confirmOptFunc({inputs:otpInputs,erroOtpMsg:erroMsgHolder,email:emailHolder.textContent})
+    if(data.success){
+        window.location.href = "./ForgSetNewPass.html"
+    }
 })
 // resend the code 
 resendOTP.addEventListener('click',async ()=>{

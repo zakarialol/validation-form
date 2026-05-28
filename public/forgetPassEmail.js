@@ -1,8 +1,9 @@
 const forgetpassPageSignUpBtn = document.querySelector('[data-btn="ForgPssSignUpbtn"]')
 const ForgetPassFormSendBtn = document.getElementById('ForgetPassForm')
 const emailTorestPass = document.querySelector('[data-input="emailPassReset"]')
+const sendButton = document.getElementById('sendButton')
 // logic
-import { sendOtpFunc } from "./state.js"
+import { sendOtpFunc,svg } from "./state.js"
 console.log(forgetpassPageSignUpBtn)
 forgetpassPageSignUpBtn.addEventListener('click',()=>{
     window.location.href = "./signupForm.html"
@@ -23,14 +24,24 @@ async function sendOptForRestPassFunc(email){
 }
 // storing the email in the seassion first
 async function storeTheEmailIntheSessionFunc(email){
-    const response = await fetch("http://localhost:3000/email",{
-        method: "POST",
-        headers: {
-            "Content-Type" : "application/json"
-        },
-        body: JSON.stringify({email})
-    })
-    const result = await response.json()
-    console.log('result', result)
+    try{
+        sendButton.disabled = true
+        sendButton.innerHTML = `sending ... ${svg}`
+        const response = await fetch("http://localhost:3000/email",{
+            method: "POST",
+            headers: {
+                "Content-Type" : "application/json"
+            },
+            body: JSON.stringify({email})
+        })
+        const result = await response.json()
+        console.log('result', result)
+    }catch(err){
+        console.log(err)
+    }finally{
+        sendButton.disabled = false
+        sendButton.textContent = "send"
+
+    }
 }
 // sending the otp

@@ -7,8 +7,9 @@ const signUpBtn = document.querySelector("[data-btn='sign-up']")
 import "./ui.js"
 import "./state.js"
 import {agreedFalseFunc, agreedTrueFunc} from "./ui.js"
-import { form ,emailverification} from "./state.js"
+import {form,emailverification,optFunc, svg} from "./state.js"
 import {validFormInputsFunc} from "./formValidation.js"
+//
 //
 agreedCheckB.addEventListener("change",(e)=>{
     if(e.target.checked){
@@ -26,6 +27,7 @@ form.addEventListener('submit',async(e)=>{
     if(valid){
         try{
             signUpBtn.disabled = true
+            signUpBtn.innerHTML = `signing ${svg}`
             const res = await fetch("http://localhost:3000/email",{
                 method :"POST",
                 body: formdata,
@@ -42,20 +44,10 @@ form.addEventListener('submit',async(e)=>{
             console.log("error",err)
         }finally{
             signUpBtn.disabled = false
+            signUpBtn.textContent = "sign up"
         }
     }
 })
-async function optFunc(email){
-    const response = await fetch("http://localhost:3000/send-otp",{
-        method: "POST",
-        headers: {
-            "Content-Type":"application/json"
-        },
-        body:JSON.stringify({email})
-    })
-    const data = await response.json()
-    console.log(data, "data from the otp send")
-}
 
 
                                                                                                                                                                                                                                                                                                                                                                                                       

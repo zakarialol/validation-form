@@ -82,20 +82,6 @@ app.post("/verify-otp", async(req, res) => {
       const { email, otp } = req.body;
       console.log(email,otp,"opt and email")
       if (otpStore[email] === Number(otp)) {
-          console.log(req.session.user,"*-* this the user")
-          try{
-            const response = await fetch("https://69caf052ba5984c44bf3fc7c.mockapi.io/loginapi/v1/loginform",{
-              method:"POST",
-              headers:{
-                "Content-Type":"application/json"
-              },
-              body:JSON.stringify(req.session.user)
-            })
-            
-          }catch(err){
-            res.status(400).json({error:"err",stored:"none"})
-          }
-        // await storeinforToMockApi()
         res.json({success:true, message: "Verified" });
       } else {
         // console.log("inside else right")
@@ -106,6 +92,22 @@ app.post("/verify-otp", async(req, res) => {
   }
 
 });
+//
+app.post("/storeUserToMock",async(req,res)=>{
+            try{
+            const response = await fetch("https://69caf052ba5984c44bf3fc7c.mockapi.io/loginapi/v1/loginform",{
+              method:"POST",
+              headers:{
+                "Content-Type":"application/json"
+              },
+              body:JSON.stringify(req.session.user)
+            })
+            res.json({succes : true})
+            
+          }catch(err){
+            res.status(400).json({error:"err",stored:"none"})
+          }
+})
 //store the user found
 app.post("/storeValidUser",async(req,res)=>{
   console.log(req.body,"***###3** body **")
