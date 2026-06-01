@@ -19,7 +19,7 @@ verificationInputFunc(otpInputs)
 confirmOTP.addEventListener('click',async ()=>{
     const data = await confirmOptFunc({inputs:otpInputs,erroOtpMsg:erroMsgHolder,email:emailHolder.textContent})
     if(data.success){
-        window.location.href = "./ForgSetNewPass.html"
+        window.location.replace('./ForgSetNewPass.html')
     }
 })
 // resend the code 

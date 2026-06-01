@@ -3,6 +3,7 @@ const confirmOTPBtn = document.querySelector('[data-btn="confirmOTP"]')
 const inputsVerificationOtp = document.querySelectorAll('[data-div="otp-inputs"] input')
 const ErroOtpMsg = document.querySelector('[data-otp="otp-holder"]')
 const resendOTP = document.querySelector('[data-btn="resendOTP"]')
+const arrowBack = document.getElementById('arrowBack')
 //todo: importing stuff
 import {verificationInputFunc ,confirmOptFunc,getEmailFunc,optFunc} from "./state.js"
 getEmailFunc(emailHolder)
@@ -17,7 +18,7 @@ confirmOTPBtn.addEventListener('click',async()=>{
                 "Content-Type":"application/json"
             }
         })
-         window.location.href ="./emailVerSucces.html"
+         window.location.replace('./emailVerSucces.html')
     }
 })
 resendOTP.addEventListener('click',()=>{
@@ -25,3 +26,6 @@ resendOTP.addEventListener('click',()=>{
 })
 // working the inputs 
 verificationInputFunc(inputsVerificationOtp)
+arrowBack.addEventListener('click',()=>{
+    history.back()
+})

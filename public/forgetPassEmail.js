@@ -4,6 +4,7 @@ const emailTorestPass = document.querySelector('[data-input="emailPassReset"]')
 const sendButton = document.getElementById('sendButton')
 const forgotPasswordEmailConfirm = document.getElementById('forgotPasswordEmailConfirm')
 const emailConfirmMsg = document.getElementById('emailConfirmMsg')
+const arrowBack = document.getElementById('arrowBack')
 // logic
 import { sendOtpFunc,svg,checkIfEmailexistInDataBaseFunc } from "./state.js"
 forgetpassPageSignUpBtn.addEventListener('click',()=>{
@@ -32,7 +33,7 @@ ForgetPassFormSendBtn.addEventListener("submit",async(event)=>{
 async function sendOptForRestPassFunc(email){
     await storeTheEmailIntheSessionFunc(email)
     await sendOtpFunc(email)
-    window.location.href = "./forgotPassVerifi.html"
+    window.location.replace('./forgotPassVerifi.html')
 }
 // storing the email in the seassion first
 async function storeTheEmailIntheSessionFunc(email){
@@ -54,4 +55,7 @@ async function storeTheEmailIntheSessionFunc(email){
 
     }
 }
+arrowBack.addEventListener('click',()=>{
+    history.back()
+})
 // sending the otp
