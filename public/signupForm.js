@@ -37,7 +37,6 @@ form.addEventListener('submit',async(e)=>{
                 // body: JSON.stringify(emailverification),
                 credentials: "include"
             })
-            console.log(await res.json())
             await optFunc(emailverification.email)
             window.location.href = "./emailCode.html"   
         }catch(err){

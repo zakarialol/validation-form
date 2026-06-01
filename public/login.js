@@ -13,7 +13,6 @@ loginBtn.addEventListener("submit",(e)=>{
     loginFormFunc()
 })
 function loginFormFunc(){
-    console.log('you just pressed the login btn')
     CheckApiUsersFunc()
 }
 // function to check the api
@@ -25,7 +24,6 @@ async function CheckApiUsersFunc(){
         loginButton.disabled = true
         const res = await fetch("https://69caf052ba5984c44bf3fc7c.mockapi.io/loginapi/v1/loginform")
         const data = await res.json()
-        // console.log(data,'the is the data weve got')
         await verifyUserFunc(user,password,data)
     }catch(err){
         console.log("something went wrong please try again",err.message)
@@ -53,17 +51,13 @@ async function verifyUserFunc(user,password,data){
                 body:JSON.stringify(userFound)
             })
             const data = await res.json()
-            console.log(data,'data')
             window.location.href = "./dashboard.html"
-            console.log("loggin succes congratulition ***")
         }catch(err){
-            console.log("error",err)
         }finally{
             loginButton.disabled = false
             loginButton.textContent = "login"
         }
     }else{
-        console.log("email or password wrong")
         ErrorDisplay(signUpErrorHolder,signUpErrorMsg)
     }
 }

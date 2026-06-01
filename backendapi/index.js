@@ -25,14 +25,12 @@ app.use(cors({
 // this about storing the email
 app.post("/email",upload.none(),(req,res)=>{
   try{
-  console.log(req.body,"************body send from the front end")
   const {firstName,lastName,password,confirmPassword,gender,skill,email,phone,address,postalCode} = req.body;
   req.session.user = {firstName,lastName,password,confirmPassword,gender,skill,email,phone,address,postalCode,date:new Date().toLocaleString()}
   res.json({success: true})
 
   }catch(err){
     res.status(500).json({success:false})
-    console.log("error",err)
   }
 })
 // getting the code from the user session
@@ -40,7 +38,7 @@ app.get("/getemailCodeSendOn",(req,res)=>{
   try{
     res.json({email:req.session.user?.email|| null})
   }catch(err){
-    console.log("error",err)
+        res.status(500).json({success:false})
   }
 })
 // about send code to gmail
@@ -69,9 +67,7 @@ async function sentOTPFunc(email){
 }
 let otpStore = {}
 app.post("/send-otp", async (req, res) => {
-  console.log('sending ...')
   const { email } = req.body;
-  console.log(req.body.email)
   const otp = await sentOTPFunc(email);
   otpStore[email] = otp;
   res.json({ message: "OTP sent"});
@@ -80,11 +76,9 @@ app.post("/send-otp", async (req, res) => {
 app.post("/verify-otp", async(req, res) => {
   try{
       const { email, otp } = req.body;
-      console.log(email,otp,"opt and email")
       if (otpStore[email] === Number(otp)) {
         res.json({success:true, message: "Verified" });
       } else {
-        // console.log("inside else right")
         res.status(400).json({success:false, message: "invalid number" });
       }
   }catch{
@@ -110,11 +104,9 @@ app.post("/storeUserToMock",async(req,res)=>{
 })
 //store the user found
 app.post("/storeValidUser",async(req,res)=>{
-  console.log(req.body,"***###3** body **")
   const userFound = req.body
   try{
     if(userFound){
-      console.log("enter")
       req.session.validUser = userFound || null
     }
     res.json({succes : "true"})
@@ -125,7 +117,6 @@ app.post("/storeValidUser",async(req,res)=>{
   }
 })
 app.get("/userInfo",(req,res)=>{
-  console.log('hello world from user Info')
   try{
     res.json({succes:true ,userInfo:req.session.validUser||null})
   }catch(err){

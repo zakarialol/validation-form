@@ -11,9 +11,7 @@ export const svg = `<svg fill="currentColor" class="w-4 h-4" viewBox="0 0 24 24"
 export const form = document.getElementById('registerForm')
 export async function confirmOptFunc({inputs,erroOtpMsg,email}){
 
-    console.log(email,"email send to the confirm")
     let otp = Array.from(inputs).map(input => input.value).join("") ;
-    console.log(otp , "otpv")
     const response = await fetch("http://localhost:3000/verify-otp",{
         method:"POST",
         headers :{
@@ -23,12 +21,6 @@ export async function confirmOptFunc({inputs,erroOtpMsg,email}){
     })
     const data = await response.json()
     return data
-    // if(data.success){
-    //     window.location.href = page
-    // }else{
-    //     erroOtpMsg.textContent = data.message
-    // }
-    console.log(data)
 }
 export async function optFunc(email){
     const response = await fetch("http://localhost:3000/send-otp",{
@@ -39,7 +31,6 @@ export async function optFunc(email){
         body:JSON.stringify({email})
     })
     const data = await response.json()
-    console.log(data, "data from the otp send")
 }
 export function ErrorDisplay(holder,msg){
     const heightt = msg.scrollHeight
@@ -47,24 +38,21 @@ export function ErrorDisplay(holder,msg){
     setTimeout(()=>{
         holder.style.height = 0 + "px"
     },2500)
-    console.log(heightt,"heightt")
 }
-//store the objecform
-// async function storeToMock(){
-//     console.log(ObjectForm)
-//     try{
-//     const response = await fetch("https://69caf052ba5984c44bf3fc7c.mockapi.io/loginapi",{
-//         method: "POST",
-//         headers:{
-//             "Content-Type":"application/json"
-//         },
-//         body:JSON.stringify({firstName:"zakaria"})
-//     })
-//     }catch(err){
-//         console.log("Error",err)
-//     }
-// }
 
+//
+export async function checkIfEmailexistInDataBaseFunc(email){
+    try{
+        const response = await fetch("https://69caf052ba5984c44bf3fc7c.mockapi.io/loginapi/v1/loginform")
+        const data = await response.json()
+        const existedEmail = data.find(obj=>{
+            return obj.email === email
+        })
+        return existedEmail ? true : false
+    }catch(err){
+        console.log('error',err)
+    }
+}
 //
 export function verificationInputFunc(inputs){
 
@@ -88,17 +76,14 @@ export async function sendOtpFunc(email){
         body: JSON.stringify({email})
     })
     const result = await response.json()
-    console.log('result', result)
 }
 //
 export async function getEmailFunc(el){
-    console.log(el)
     try{
         const res = await fetch("http://localhost:3000/getemailCodeSendOn",{
             credentials: "include"
         })
         const data = await res.json()
-        console.log('data',data)
         el.textContent = data.email
         return data.email
     }catch(err){
@@ -109,9 +94,6 @@ export async function getEmailFunc(el){
 //
 export function verfyPassword({passwordInputValue,passValidationObject,passwordValidation}){
     const {upperCaseLetter,number,specialCarater} = passwordValidation
-    console.log(upperCaseLetter,"uppercase letter inside state")
-    console.log(specialCarater,"scpecial  inside state")
-    console.log(passwordValidation)
     if(/(?=.*[A-Z]).{6,}/.test(passwordInputValue)){
         toggleErrorPasswordParagraphsFunc(upperCaseLetter,true)
         passValidationObject.Passowrd1condition = true

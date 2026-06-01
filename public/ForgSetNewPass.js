@@ -27,11 +27,9 @@ const newPasswordSendButton = document.getElementById('newPasswordSendButton')
 import { verfyPassword,objeNewPass,ToggleSvgsFunc,svg } from "./state.js"
 //
 confirmPasswordInputDiv.addEventListener("mouseenter",()=>{
-    console.log('you just hover on the new passworkd')
     viewConfirmPasswordBtn.classList.remove('hidden')
 })
 confirmPasswordInputDiv.addEventListener("mouseleave",()=>{
-    console.log('you just left on the new passworkd')
     viewConfirmPasswordBtn.classList.add('hidden')
 })
 PasswordInputDiv.addEventListener('mouseenter',()=>{
@@ -62,7 +60,6 @@ viewConfirmPasswordBtn.addEventListener('click',(e)=>{
 //
 let newPassObj = {}
 NewPasswordInput.addEventListener('focus',()=>{
-    console.log('hello you"re in the newPas input')
     PasswordConditionUL.classList.remove('hidden')
 })
 //
@@ -72,20 +69,17 @@ NewPasswordInput.addEventListener('input',()=>{
 })
 //blur
 NewPasswordInput.addEventListener('blur',()=>{
-    console.log(newPassObj)
     if(newPassObj.Passowrd1condition  &&
         newPassObj.Passowrd2condition &&
         newPassObj.Passowrd3condition 
      ){
         // hide the condition div
-        console.log("in the true condition **")
         passwordInput.classList.remove("box-ShadowErrorClr")
         NewPassFormFunc(passwordInput,true)
         PasswordConditionUL.classList.add('hidden')
         newPassObj.passwordValid = passwordInput.value.trim()
         ToggleSvgsFunc(pssFalseSvg,pssTrueeSvg,passwordSvgsHolder,true)
      }else{
-        console.log("in the false condition **")
         ToggleSvgsFunc(pssFalseSvg,pssTrueeSvg,passwordSvgsHolder,false)
         NewPassFormFunc(passwordInput,false)
     }
@@ -93,13 +87,11 @@ NewPasswordInput.addEventListener('blur',()=>{
 //
 //todo function to store form data
 function NewPassFormFunc(El,condition){
-        console.log('entring the stor data')
         ;(objeNewPass[El.name]??={})[El.name] = condition
         ;(objeNewPass[El.name]??={})["element"] = El
 }
 //
 confirmPass.addEventListener('blur',()=>{
-        console.log(newPassObj,"***")
         if(confirmPass.value.trim() === newPassObj.passwordValid){
             confirmPass.classList.remove("box-ShadowErrorClr")
             NewPassFormFunc(confirmPass,true)
@@ -116,11 +108,10 @@ confirmPass.addEventListener('blur',()=>{
 
 NewPassFormSubmit.addEventListener('submit',async(e)=>{
     e.preventDefault()
-    console.log('hello world u just pressed the send fogsetnewpass')
+    newPasswordSendButton.innerHTML = `sending ... ${svg}`
+    newPasswordSendButton.disabled = true
     let response = await fetch("http://localhost:3000/getemailCodeSendOn")
     let result = await response.json()
-    console.log(result,"result")
-    console.log(result.email)
     const formData = new FormData(NewPassFormSubmit);
     let ObjectFormValues = Object.values(objeNewPass)
     let NotValidInput = ObjectFormValues.find(itm=>{
@@ -131,27 +122,27 @@ NewPassFormSubmit.addEventListener('submit',async(e)=>{
             block:"center"
     })
     NotValidInput?.element.classList.add('box-ShadowErrorClr')
-    console.log(NotValidInput,"not valid input")
     if(!NotValidInput){
-        console.log('you can cange the password')
        const id = await renewPasswordInMockApiFunc(result.email)
        await changethePasswordFunc(newPassObj.passwordValid,id)
+       newPasswordSendButton.textContent = "send"
+       newPasswordSendButton.disabled = false
+       window.location.href = "./emailVerSucces.html"
+    }else{
+        newPasswordSendButton.textContent = "send"
+       newPasswordSendButton.disabled = false
     }
 })
 //function to fund the user that i will change the password on
 async function renewPasswordInMockApiFunc(email){
     const response = await fetch("https://69caf052ba5984c44bf3fc7c.mockapi.io/loginapi/v1/loginform")
     const users = await response.json()
-    console.log(email,"email**##**")
-    console.log(users,"usersfound")
     const user = users.find(user=>{
         return user.email === email
     })
-    console.log(user,"user valid")
     return user.id
 }
 async function changethePasswordFunc(newpassword,id){
-    console.log("this the new password and id that we will change",newpassword,id)
     const response = await fetch(`https://69caf052ba5984c44bf3fc7c.mockapi.io/loginapi/v1/loginform/${id}`,{
         method:"PUT",
         headers: {
@@ -162,5 +153,4 @@ async function changethePasswordFunc(newpassword,id){
         })
     })
     const users = await response.json()
-    console.log(users,"users respnse from the server")
 }

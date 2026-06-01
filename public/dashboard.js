@@ -1,11 +1,8 @@
 const main = document.getElementsByTagName('main')
-console.log(main)
 async function userinfo(){
     const response = await fetch("http://localhost:3000/userInfo")
     const data = await response.json()
-    console.log(data)
     const obj = Object.values(data)[1]
-    console.log(obj,"obj")
     let html = `<div class = "p-4 min-w-[335px]">
                     <div class = "flexUserInfo">
                         <p class = "text-[#8B302D]">first name: :</p><span>${obj.firstName}<span>
@@ -38,8 +35,6 @@ async function userinfo(){
 
                 </div>
     `
-    console.log(html)
     main[0].insertAdjacentHTML("beforeend",html)
 }
 userinfo()
-console.log("hello inside dasheboard")

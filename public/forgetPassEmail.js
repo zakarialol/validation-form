@@ -2,18 +2,30 @@ const forgetpassPageSignUpBtn = document.querySelector('[data-btn="ForgPssSignUp
 const ForgetPassFormSendBtn = document.getElementById('ForgetPassForm')
 const emailTorestPass = document.querySelector('[data-input="emailPassReset"]')
 const sendButton = document.getElementById('sendButton')
+const forgotPasswordEmailConfirm = document.getElementById('forgotPasswordEmailConfirm')
+const emailConfirmMsg = document.getElementById('emailConfirmMsg')
 // logic
-import { sendOtpFunc,svg } from "./state.js"
-console.log(forgetpassPageSignUpBtn)
+import { sendOtpFunc,svg,checkIfEmailexistInDataBaseFunc } from "./state.js"
 forgetpassPageSignUpBtn.addEventListener('click',()=>{
     window.location.href = "./signupForm.html"
 })
 
-ForgetPassFormSendBtn.addEventListener("submit",(event)=>{
+ForgetPassFormSendBtn.addEventListener("submit",async(event)=>{
     event.preventDefault()
     const email = emailTorestPass.value.trim()
-    sendOptForRestPassFunc(email)
-    console.log('you just presst send')
+    sendButton.innerHTML = `sending ... ${svg}`
+    sendButton.disabled = true
+    const result = await checkIfEmailexistInDataBaseFunc(email)
+    if(result){
+        await sendOptForRestPassFunc(email)
+        sendButton.textContent = `send`
+        sendButton.disabled = true
+    }else{
+       const heightt =  emailConfirmMsg.scrollHeight
+       forgotPasswordEmailConfirm.style.height = heightt + "px"
+        sendButton.innerHTML = `send`
+        sendButton.disabled = true
+    }
 })
 
 // send opt to resset the password
@@ -35,9 +47,7 @@ async function storeTheEmailIntheSessionFunc(email){
             body: JSON.stringify({email})
         })
         const result = await response.json()
-        console.log('result', result)
     }catch(err){
-        console.log(err)
     }finally{
         sendButton.disabled = false
         sendButton.textContent = "send"

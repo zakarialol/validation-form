@@ -62,7 +62,7 @@ const postalCodeFalseSvg = document.getElementById('postalCodeFalsesvg')
 const postalCodeTrueSvg = document.getElementById("postalCodeTruesvg")
 const postalCodeErrorMsg = document.getElementById('postalCodeErroParagraph')
 // import elements
-import { signUpBtn ,ObjectForm,verfyPassword,ToggleSvgsFunc } from "./state.js";
+import { signUpBtn ,ObjectForm,verfyPassword,ToggleSvgsFunc, confirmOptFunc ,checkIfEmailexistInDataBaseFunc} from "./state.js";
 export {agreedFalseFunc,agreedTrueFunc,}
 // function to agreed checkbox
 function agreedTrueFunc(){
@@ -87,11 +87,9 @@ function ValidationFunc({El,regex,mainHolder,svgFalse,svgTrue,erroEl,elHeight}){
             El.classList.remove("box-ShadowErrorClr")
             ToggleSvgsFunc(svgTrue,svgFalse,mainHolder,false);
             storFormDataFunc(El,true)
-            console.log(ObjectForm)
             if(erroEl) erroEl.style.height = 0 
         }else if(NameV.trim()=== "" || !regexTest.test(NameV)){
             storFormDataFunc(El,false)
-            console.log(ObjectForm)
             ToggleSvgsFunc(svgTrue,svgFalse,mainHolder,true)
             if(erroEl) erroEl.style.height = elHeight + "px" 
         }
@@ -129,7 +127,6 @@ PasswordInputDiv.addEventListener('mouseleave',()=>{
     viewPasswordBtn.classList.add('hidden')
 })
 passwordInput.addEventListener('focus',()=>{
-    console.log(passwordConditions.scrollHeight)
     // PasswordConditionUL.classList.remove('hidden')
     PasswordConditionUL.style.height = passwordConditions.scrollHeight + "px"
 })
@@ -153,16 +150,12 @@ passwordInput.addEventListener('blur',()=>{
     }
 })
 confirmPass.addEventListener('blur',()=>{
-        console.log(passwordValidationObj,"***")
         if(confirmPass.value.trim() === passwordInput.value.trim()){
             confirmPass.classList.remove("box-ShadowErrorClr")
             storFormDataFunc(confirmPass,true)
-            console.log(ObjectForm)
             ToggleSvgsFunc(confirmPssFalseSvg,confirmPssTrueSvg,confirmPssSvgsHolder,true)
-            console.log(confirmPssError,notMuchPass.scrollHeight)
             confirmPssError.style.height = 0 + "px"
         }else if(passwordInput.value.trim() !== "" && confirmPass.value.trim() !== passwordInput.value.trim()){
-            console.log("password don't much")
             storFormDataFunc(confirmPass,false)
             ToggleSvgsFunc(confirmPssFalseSvg,confirmPssTrueSvg,confirmPssSvgsHolder,false)
              confirmPssError.style.height = notMuchPass.scrollHeight + 'px'
@@ -200,17 +193,23 @@ genderSelect.addEventListener('change',()=>{
 })
 //todo function to store form data
 function storFormDataFunc(El,condition){
-        console.log('entring the stor data')
         ;(ObjectForm[El.name]??={})[El.name] = condition
         ;(ObjectForm[El.name]??={})["element"] = El
 }
 //todo validation of email
-emailInput.addEventListener('blur',()=>{
-    console.log('validation of email')
+emailInput.addEventListener('blur',async()=>{
     let heightt = emailErroMsg.scrollHeight
+    emailErroMsg.textContent = "email not valid"
     ValidationFunc({El:emailInput,regex:/^[^\s@]+@[^\s@]+\.[^\s@]+$/,mainHolder:emailSvgsDiv,svgFalse:emailFalseSvg,svgTrue:emailTrueSvg,erroEl:emailErrorParagraph,elHeight:heightt})
-    console.log('you just left email input')
+    const result = await checkIfEmailexistInDataBaseFunc(emailInput.value.trim())
+    if(ObjectForm.email.email && result){
+        emailErroMsg.textContent = "this email already exist"
+        emailErrorParagraph.style.height = heightt + "px"
+        storFormDataFunc(emailInput,false)
+        ToggleSvgsFunc(emailTrueSvg,emailFalseSvg,emailSvgsDiv,true)
+    }
 })
+
 //todo phone validation 
 phoneInput.addEventListener('blur',()=>{
     let heightt = phoneMsgError.scrollHeight
