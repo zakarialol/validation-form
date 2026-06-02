@@ -62,16 +62,27 @@ function genireateOTPFunc(){
 //
 async function sentOTPFunc(email){
   const otp = genireateOTPFunc()
-      console.log(email,'email')
-      await resend.emails.send({
+    //   await resend.emails.send({
+    //   from: "Acme <onboarding@resend.dev>",
+    //   to: [email],
+    //   subject: "Your OTP Code",
+    //   html: `
+    //     <h2>Your OTP Code</h2>
+    //     <p><b>${otp}</b></p>
+    //   `
+    // });
+    console.log("EMAIL:", email);
+    console.log("OTP:", otp);
+
+    const { data, error } = await resend.emails.send({
       from: "Acme <onboarding@resend.dev>",
       to: [email],
       subject: "Your OTP Code",
-      html: `
-        <h2>Your OTP Code</h2>
-        <p><b>${otp}</b></p>
-      `
+      html: `<h2>Your OTP Code</h2><p><b>${otp}</b></p>`
     });
+
+    console.log("RESEND DATA:", data);
+    console.log("RESEND ERROR:", error);
   return otp
 }
 let otpStore = {}
