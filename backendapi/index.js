@@ -6,6 +6,7 @@ import nodemailer from "nodemailer";
 import multer from "multer";
 const app = express();
 const upload = multer()
+const PORT = process.env.PORT || 3000;
 app.use(express.static("public"))
 app.use(express.json());
 app.use(session({
@@ -126,4 +127,6 @@ app.get("/userInfo",(req,res)=>{
 // async function storeinforToMockApi(req){
 
 // }
-app.listen(3000, () => console.log("Server running"));
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+});

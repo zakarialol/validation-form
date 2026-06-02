@@ -8,7 +8,7 @@ import { verificationInputFunc,confirmOptFunc,sendOtpFunc,getEmailFunc} from "./
 //
 getEmailFunc(emailHolder)
 async function GetEmailFromSessionFunc(){
-    const response = await fetch("http://localhost:3000/getemailCodeSendOn")
+    const response = await fetch("/getemailCodeSendOn")
     const result = await response.json()
     emailHolder.textContent = result.email
 }

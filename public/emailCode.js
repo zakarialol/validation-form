@@ -12,7 +12,7 @@ confirmOTPBtn.addEventListener('click',async()=>{
     let email = emailHolder.textContent
     const data = await confirmOptFunc({inputs:inputsVerificationOtp,erroOtpMsg:ErroOtpMsg,email:email})
     if(data.success === true){
-        await fetch("http://localhost:3000/storeUserToMock",{
+        await fetch("/storeUserToMock",{
             method:"POST",
             headers: {
                 "Content-Type":"application/json"

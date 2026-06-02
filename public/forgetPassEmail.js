@@ -40,7 +40,7 @@ async function storeTheEmailIntheSessionFunc(email){
     try{
         sendButton.disabled = true
         sendButton.innerHTML = `sending ... ${svg}`
-        const response = await fetch("http://localhost:3000/email",{
+        const response = await fetch("/email",{
             method: "POST",
             headers: {
                 "Content-Type" : "application/json"

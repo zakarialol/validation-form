@@ -28,7 +28,7 @@ form.addEventListener('submit',async(e)=>{
         try{
             signUpBtn.disabled = true
             signUpBtn.innerHTML = `signing ${svg}`
-            const res = await fetch("http://localhost:3000/email",{
+            const res = await fetch("/email",{
                 method :"POST",
                 body: formdata,
                 // headers :{

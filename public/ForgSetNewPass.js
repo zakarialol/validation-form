@@ -110,7 +110,7 @@ NewPassFormSubmit.addEventListener('submit',async(e)=>{
     e.preventDefault()
     newPasswordSendButton.innerHTML = `sending ... ${svg}`
     newPasswordSendButton.disabled = true
-    let response = await fetch("http://localhost:3000/getemailCodeSendOn")
+    let response = await fetch("/getemailCodeSendOn")
     let result = await response.json()
     const formData = new FormData(NewPassFormSubmit);
     let ObjectFormValues = Object.values(objeNewPass)

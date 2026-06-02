@@ -1,6 +1,6 @@
 const main = document.getElementsByTagName('main')
 async function userinfo(){
-    const response = await fetch("http://localhost:3000/userInfo")
+    const response = await fetch("/userInfo")
     const data = await response.json()
     const obj = Object.values(data)[1]
     let html = `<div class = "p-4 min-w-[335px]">

@@ -43,7 +43,7 @@ async function verifyUserFunc(user,password,data){
         try{
             loginButton.innerHTML = `loggin... ${svg}`
             loginButton.disabled = true
-            const res = await fetch("http://localhost:3000/storeValidUser",{
+            const res = await fetch("/storeValidUser",{
                 method:"POST",
                 headers:{
                     "Content-Type":"application/json",

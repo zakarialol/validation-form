@@ -12,7 +12,7 @@ export const form = document.getElementById('registerForm')
 export async function confirmOptFunc({inputs,erroOtpMsg,email}){
 
     let otp = Array.from(inputs).map(input => input.value).join("") ;
-    const response = await fetch("http://localhost:3000/verify-otp",{
+    const response = await fetch("/verify-otp",{
         method:"POST",
         headers :{
             "Content-Type":"application/json",
@@ -23,7 +23,7 @@ export async function confirmOptFunc({inputs,erroOtpMsg,email}){
     return data
 }
 export async function optFunc(email){
-    const response = await fetch("http://localhost:3000/send-otp",{
+    const response = await fetch("/send-otp",{
         method: "POST",
         headers: {
             "Content-Type":"application/json"
@@ -68,7 +68,7 @@ export function verificationInputFunc(inputs){
 }
 // 
 export async function sendOtpFunc(email){
-    const response = await fetch("http://localhost:3000/send-otp",{
+    const response = await fetch("/send-otp",{
     method: "POST",
     headers: {
             "Content-Type" : "application/json"
@@ -80,7 +80,7 @@ export async function sendOtpFunc(email){
 //
 export async function getEmailFunc(el){
     try{
-        const res = await fetch("http://localhost:3000/getemailCodeSendOn",{
+        const res = await fetch("/getemailCodeSendOn",{
             credentials: "include"
         })
         const data = await res.json()
