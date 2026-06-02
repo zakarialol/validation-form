@@ -31,7 +31,6 @@ export async function optFunc(email){
         body:JSON.stringify({email})
     })
     const data = await response.json()
-    console.log(data,'data')
 }
 export function ErrorDisplay(holder,msg){
     const heightt = msg.scrollHeight
@@ -69,7 +68,6 @@ export function verificationInputFunc(inputs){
 }
 // 
 export async function sendOtpFunc(email){
-    console.log(email,"email")
     const response = await fetch("/send-otp",{
     method: "POST",
     headers: {
@@ -78,7 +76,6 @@ export async function sendOtpFunc(email){
         body: JSON.stringify({email})
     })
     const result = await response.json()
-    console.log('result insde send otp',result)
 }
 //
 export async function getEmailFunc(el){

@@ -48,7 +48,6 @@ async function storeTheEmailIntheSessionFunc(email){
             body: JSON.stringify({email})
         })
         const result = await response.json()
-        console.log(result,"result")
     }catch(err){
     }finally{
         sendButton.disabled = false
