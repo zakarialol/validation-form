@@ -55,17 +55,7 @@ app.get("/getemailCodeSendOn",(req,res)=>{
         res.status(500).json({success:false})
   }
 })
-// about send code to gmail
-// const transporder = nodemailer.createTransport({
-//     host: "smtp.gmail.com",
-//     port: 587,
-//     secure: false,
-//   auth:{
-//     user: "boxbox1998me@gmail.com",
-//     pass: `${process.env.gmailPass}`
-//   }
-// })
-// genireate the code function 
+
 function genireateOTPFunc(){
   return Math.floor(1000 + Math.random() * 9000)
 }
@@ -74,20 +64,13 @@ async function sentOTPFunc(email){
   const otp = genireateOTPFunc()
       await resend.emails.send({
       from: "onboarding@resend.dev",
-      to: email,
+      to: [email],
       subject: "Your OTP Code",
       html: `
         <h2>Your OTP Code</h2>
         <p><b>${otp}</b></p>
       `
     });
-  //   const mailOptions = {
-  //   from: "boxbox1998me@gmail.com",
-  //   to: email,
-  //   subject: "OTP Code",
-  //   text: `Your OTP is: ${otp}`
-  // };
-  // await transporder.sendMail(mailOptions)
   return otp
 }
 let otpStore = {}
@@ -95,6 +78,7 @@ app.post("/send-otp", async (req, res) => {
   const { email } = req.body;
   console.log(email,"email in the node send-otp")
   const otp = await sentOTPFunc(email);
+  console.log(otp,"otp")
   otpStore[email] = otp;
   res.json({ message: "OTP sent"});
 });
