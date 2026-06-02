@@ -64,7 +64,7 @@ async function sentOTPFunc(email){
   const otp = genireateOTPFunc()
       console.log(email,'email')
       await resend.emails.send({
-      from: "onboarding@resend.dev",
+      from: "Acme <onboarding@resend.dev>",
       to: [email],
       subject: "Your OTP Code",
       html: `
