@@ -31,10 +31,6 @@ form.addEventListener('submit',async(e)=>{
             const res = await fetch("/email",{
                 method :"POST",
                 body: formdata,
-                // headers :{
-                //     "Content-Type" : "application/json"
-                // },
-                // body: JSON.stringify(emailverification),
                 credentials: "include"
             })
             await optFunc(emailverification.email)
@@ -44,7 +40,7 @@ form.addEventListener('submit',async(e)=>{
         }finally{
             signUpBtn.disabled = false
             signUpBtn.textContent = "sign up"
-        }
+        }                         
     }
 })
 

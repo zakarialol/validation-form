@@ -78,6 +78,7 @@ async function sentOTPFunc(email){
 let otpStore = {}
 app.post("/send-otp", async (req, res) => {
   const { email } = req.body;
+  console.log(email,"email in the node send-otp")
   const otp = await sentOTPFunc(email);
   otpStore[email] = otp;
   res.json({ message: "OTP sent"});
