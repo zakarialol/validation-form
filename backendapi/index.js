@@ -4,11 +4,20 @@ import session, { Session } from "express-session";
 import cors from "cors";
 import nodemailer from "nodemailer";
 import multer from "multer";
+//
+import path from "path";
+import { fileURLToPath } from "url";
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+//
 const app = express();
 const upload = multer()
 const PORT = process.env.PORT || 3000;
 app.use(express.static("public"))
 app.use(express.json());
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "public", "login.html"));
+});
 app.use(session({
   secret: "secret",
   resave: false,
