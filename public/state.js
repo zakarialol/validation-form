@@ -69,6 +69,7 @@ export function verificationInputFunc(inputs){
 }
 // 
 export async function sendOtpFunc(email){
+    console.log(email,"email")
     const response = await fetch("/send-otp",{
     method: "POST",
     headers: {
