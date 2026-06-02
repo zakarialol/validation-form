@@ -2,8 +2,10 @@ import "dotenv/config";
 import express, { json } from "express";
 import session, { Session } from "express-session";
 import cors from "cors";
-import nodemailer from "nodemailer";
 import multer from "multer";
+//
+import { Resend } from "resend";
+const resend = new Resend(process.env.RESEND_API_KEY);
 //
 import path from "path";
 import { fileURLToPath } from "url";
@@ -54,15 +56,15 @@ app.get("/getemailCodeSendOn",(req,res)=>{
   }
 })
 // about send code to gmail
-const transporder = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false,
-  auth:{
-    user: "boxbox1998me@gmail.com",
-    pass: `${process.env.gmailPass}`
-  }
-})
+// const transporder = nodemailer.createTransport({
+//     host: "smtp.gmail.com",
+//     port: 587,
+//     secure: false,
+//   auth:{
+//     user: "boxbox1998me@gmail.com",
+//     pass: `${process.env.gmailPass}`
+//   }
+// })
 // genireate the code function 
 function genireateOTPFunc(){
   return Math.floor(1000 + Math.random() * 9000)
@@ -70,13 +72,22 @@ function genireateOTPFunc(){
 //
 async function sentOTPFunc(email){
   const otp = genireateOTPFunc()
-    const mailOptions = {
-    from: "boxbox1998me@gmail.com",
-    to: email,
-    subject: "OTP Code",
-    text: `Your OTP is: ${otp}`
-  };
-  await transporder.sendMail(mailOptions)
+      await resend.emails.send({
+      from: "onboarding@resend.dev",
+      to: email,
+      subject: "Your OTP Code",
+      html: `
+        <h2>Your OTP Code</h2>
+        <p><b>${otp}</b></p>
+      `
+    });
+  //   const mailOptions = {
+  //   from: "boxbox1998me@gmail.com",
+  //   to: email,
+  //   subject: "OTP Code",
+  //   text: `Your OTP is: ${otp}`
+  // };
+  // await transporder.sendMail(mailOptions)
   return otp
 }
 let otpStore = {}
