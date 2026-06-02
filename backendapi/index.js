@@ -62,6 +62,7 @@ function genireateOTPFunc(){
 //
 async function sentOTPFunc(email){
   const otp = genireateOTPFunc()
+      console.log(email,'email')
       await resend.emails.send({
       from: "onboarding@resend.dev",
       to: [email],
