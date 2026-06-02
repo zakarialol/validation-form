@@ -5,8 +5,14 @@ const loginPassword = document.querySelector('[data-input="password"]')
 const loginButton = document.getElementById('loginButton')
 const signUpErrorHolder = document.getElementById('signUpErrorHolder')
 const signUpErrorMsg = document.getElementById('signUpErrorMsg')
+const viewPassword = document.querySelector('[data-btn="viewPassword"]')
+const loginPasswordDiv = document.getElementById('loginPasswordDiv')
+const passwordSvgs = document.querySelectorAll('[data-btn="viewPassword"] svg')
+const viewPasswordSvg = document.getElementById('viewPasswordSvg')
+const inviewPasswordSvg = document.getElementById('inviewPasswordSvg')
+
 //
-import { ErrorDisplay,svg } from "./state.js"
+import { ErrorDisplay,svg,svgPassowrdEye } from "./state.js"
 //
 loginBtn.addEventListener("submit",(e)=>{
     e.preventDefault()
@@ -51,7 +57,7 @@ async function verifyUserFunc(user,password,data){
                 body:JSON.stringify(userFound)
             })
             const data = await res.json()
-            window.location.href = "./dashboard.html"
+            window.location.replace('./dashboard.html')
         }catch(err){
         }finally{
             loginButton.disabled = false
@@ -61,4 +67,19 @@ async function verifyUserFunc(user,password,data){
         ErrorDisplay(signUpErrorHolder,signUpErrorMsg)
     }
 }
+loginPasswordDiv.addEventListener('mouseenter',()=>{
+    viewPassword.classList.remove('hidden')
+})
+loginPasswordDiv.addEventListener('mouseleave',()=>{
+    viewPassword.classList.add('hidden')
+})
+viewPassword.addEventListener("click",()=>{
+    svgPassowrdEye(passwordSvgs)
+})
+viewPasswordSvg.addEventListener('click',()=>{
+    loginPassword.type = "password"
+})
+inviewPasswordSvg.addEventListener('click',()=>{
+    loginPassword.type = "text"
+})
 // sing up error function

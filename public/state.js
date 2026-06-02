@@ -131,3 +131,9 @@ export function ToggleSvgsFunc(svgFalseEl,svgTrueEl,mainHolder,condition){
             svgFalseEl.classList.toggle('hidden',condition)
             svgTrueEl.classList.toggle('hidden',!condition)
 }
+
+export function svgPassowrdEye(els){
+    els.forEach(item =>{
+        item.classList.toggle('hidden')
+    })
+}

@@ -62,7 +62,7 @@ const postalCodeFalseSvg = document.getElementById('postalCodeFalsesvg')
 const postalCodeTrueSvg = document.getElementById("postalCodeTruesvg")
 const postalCodeErrorMsg = document.getElementById('postalCodeErroParagraph')
 // import elements
-import { signUpBtn ,ObjectForm,verfyPassword,ToggleSvgsFunc, confirmOptFunc ,checkIfEmailexistInDataBaseFunc} from "./state.js";
+import { signUpBtn ,ObjectForm,verfyPassword,ToggleSvgsFunc, confirmOptFunc ,checkIfEmailexistInDataBaseFunc,svgPassowrdEye} from "./state.js";
 export {agreedFalseFunc,agreedTrueFunc,}
 // function to agreed checkbox
 function agreedTrueFunc(){
@@ -167,12 +167,6 @@ viewPasswordBtn.addEventListener('click',(e)=>{
     svgPassowrdEye(viewPasswordbtnSvgs)
 
 })
-// hide eye or view 
-function svgPassowrdEye(els){
-    els.forEach(item =>{
-        item.classList.toggle('hidden')
-    })
-}
 // confirm password view button
 viewConfirmPasswordBtn.addEventListener('click',(e)=>{
     confirmPass.type = confirmPass.type === "password"? "text" : "password"
