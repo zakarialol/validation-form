@@ -38,3 +38,4 @@ async function userinfo(){
     main[0].insertAdjacentHTML("beforeend",html)
 }
 userinfo()
+console.log("")
