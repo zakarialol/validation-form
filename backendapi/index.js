@@ -7,6 +7,8 @@ import multer from "multer";
 //
 import path from "path";
 import { fileURLToPath } from "url";
+import dns from "dns";
+dns.setDefaultResultOrder("ipv4first");
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 //
@@ -53,7 +55,9 @@ app.get("/getemailCodeSendOn",(req,res)=>{
 })
 // about send code to gmail
 const transporder = nodemailer.createTransport({
-  service:"gmail",
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false,
   auth:{
     user: "boxbox1998me@gmail.com",
     pass: `${process.env.gmailPass}`
